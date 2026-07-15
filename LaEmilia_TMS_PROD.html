@@ -4,6 +4,7 @@
 <title>Grupo La Emilia — Sistema Logístico</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.4.0/exceljs.min.js"></script>
 <!-- Firebase SDK compat v10 -->
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
@@ -647,87 +648,63 @@ tr:hover td{background:rgba(232,176,64,.015);}
     <!-- Brand hero — Motomel / La Emilia styled motorcycle -->
     <div class="bike-hero-wrap mb16">
       <div class="bike-svg-container">
-        <svg viewBox="0 0 250 120" xmlns="http://www.w3.org/2000/svg" style="width:220px;height:106px;" aria-label="Moto La Emilia - Motomel">
-          <!-- Ground line -->
-          <line x1="10" y1="110" x2="240" y2="110" stroke="rgba(232,176,64,.12)" stroke-width="1.5"/>
-          <!-- Ground shadow -->
-          <ellipse cx="125" cy="113" rx="98" ry="3.5" fill="rgba(232,176,64,.07)"/>
-          <!-- Motion / speed lines (bike moving forward, right) -->
+        <svg viewBox="0 0 250 140" xmlns="http://www.w3.org/2000/svg" style="width:220px;height:123px;" aria-label="Moto La Emilia - Motomel">
+          <!-- Ground line + shadow -->
+          <line x1="8" y1="112" x2="242" y2="112" stroke="rgba(232,176,64,.18)" stroke-width="1.5"/>
+          <ellipse cx="125" cy="115" rx="100" ry="3.5" fill="rgba(232,176,64,.08)"/>
+          <!-- Motion / speed lines -->
           <g stroke="#e8b040" stroke-linecap="round">
-            <line x1="2" y1="68" x2="19" y2="68" stroke-width="2" opacity=".28"/>
-            <line x1="0" y1="80" x2="21" y2="80" stroke-width="2.4" opacity=".2"/>
-            <line x1="6" y1="98" x2="24" y2="98" stroke-width="1.6" opacity=".16"/>
+            <line x1="2" y1="70" x2="20" y2="70" stroke-width="2" opacity=".28"/>
+            <line x1="0" y1="82" x2="22" y2="82" stroke-width="2.4" opacity=".2"/>
+            <line x1="6" y1="96" x2="25" y2="96" stroke-width="1.6" opacity=".16"/>
           </g>
           <!-- Rear wheel -->
-          <circle cx="50" cy="86" r="23" fill="none" stroke="#e8b040" stroke-width="3.5"/>
-          <circle cx="50" cy="86" r="15.5" fill="none" stroke="rgba(232,176,64,.2)" stroke-width="1.5"/>
-          <circle cx="50" cy="86" r="4.5" fill="rgba(232,176,64,.6)"/>
-          <g stroke="#e8b040" stroke-width="1.2" opacity=".45">
-            <line x1="73" y1="86" x2="66" y2="86"/><line x1="27" y1="86" x2="34" y2="86"/>
-            <line x1="50" y1="109" x2="50" y2="102"/><line x1="50" y1="63" x2="50" y2="70"/>
-            <line x1="66.3" y1="102.3" x2="61.3" y2="97.3"/><line x1="33.7" y1="102.3" x2="38.7" y2="97.3"/>
-            <line x1="33.7" y1="69.7" x2="38.7" y2="74.7"/><line x1="66.3" y1="69.7" x2="61.3" y2="74.7"/>
+          <circle cx="55" cy="87" r="24" fill="none" stroke="#e8b040" stroke-width="3.5"/>
+          <circle cx="55" cy="87" r="16" fill="none" stroke="rgba(232,176,64,.25)" stroke-width="1.5"/>
+          <circle cx="55" cy="87" r="4.5" fill="rgba(232,176,64,.65)"/>
+          <g stroke="#e8b040" stroke-width="1.2" opacity=".4">
+            <line x1="55" y1="63" x2="55" y2="71"/><line x1="55" y1="103" x2="55" y2="111"/>
+            <line x1="31" y1="87" x2="39" y2="87"/><line x1="71" y1="87" x2="79" y2="87"/>
           </g>
           <!-- Front wheel -->
-          <circle cx="195" cy="86" r="23" fill="none" stroke="#e8b040" stroke-width="3.5"/>
-          <circle cx="195" cy="86" r="15.5" fill="none" stroke="rgba(232,176,64,.2)" stroke-width="1.5"/>
-          <circle cx="195" cy="86" r="4.5" fill="rgba(232,176,64,.6)"/>
-          <g stroke="#e8b040" stroke-width="1.2" opacity=".45">
-            <line x1="218" y1="86" x2="211" y2="86"/><line x1="172" y1="86" x2="179" y2="86"/>
-            <line x1="195" y1="109" x2="195" y2="102"/><line x1="195" y1="63" x2="195" y2="70"/>
-            <line x1="211.3" y1="102.3" x2="206.3" y2="97.3"/><line x1="178.7" y1="102.3" x2="183.7" y2="97.3"/>
-            <line x1="178.7" y1="69.7" x2="183.7" y2="74.7"/><line x1="211.3" y1="69.7" x2="206.3" y2="74.7"/>
+          <circle cx="195" cy="87" r="24" fill="none" stroke="#e8b040" stroke-width="3.5"/>
+          <circle cx="195" cy="87" r="16" fill="none" stroke="rgba(232,176,64,.25)" stroke-width="1.5"/>
+          <circle cx="195" cy="87" r="4.5" fill="rgba(232,176,64,.65)"/>
+          <g stroke="#e8b040" stroke-width="1.2" opacity=".4">
+            <line x1="195" y1="63" x2="195" y2="71"/><line x1="195" y1="103" x2="195" y2="111"/>
+            <line x1="171" y1="87" x2="179" y2="87"/><line x1="211" y1="87" x2="219" y2="87"/>
           </g>
-          <!-- Swingarm -->
-          <path d="M50 86 L78 78 L104 74" fill="none" stroke="#c0392b" stroke-width="2.8" stroke-linecap="round"/>
-          <!-- Chain (dashed) -->
-          <path d="M50 86 Q78 93 104 90" fill="none" stroke="rgba(232,176,64,.25)" stroke-width="2" stroke-dasharray="4 3"/>
-          <!-- Lower frame -->
-          <path d="M104 74 L140 76 L178 82 L195 86" fill="none" stroke="#e8b040" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
-          <!-- Upper frame / backbone -->
-          <path d="M104 72 L126 48 L160 40" fill="none" stroke="#e8b040" stroke-width="3" stroke-linecap="round"/>
-          <!-- Front fork (twin lines) -->
-          <path d="M178 82 L195 86" fill="none" stroke="#e8b040" stroke-width="3" stroke-linecap="round"/>
-          <path d="M176 79 L188 83" fill="none" stroke="rgba(232,176,64,.4)" stroke-width="1.8"/>
-          <!-- Seat / tail fairing -->
-          <path d="M100 66 Q108 53 124 49 L114 70 Q106 70 100 68Z"
-                fill="rgba(12,15,22,.95)" stroke="rgba(232,176,64,.25)" stroke-width="1.2"/>
-          <!-- Fuel tank — La Emilia red with gold trim -->
-          <path d="M110 70 Q122 51 146 49 Q166 48 174 58 Q180 66 174 75 Q164 79 146 79 Q124 79 110 73Z"
-                fill="rgba(192,57,43,.62)" stroke="#c0392b" stroke-width="1.8"/>
-          <!-- Tank highlight stripe -->
-          <path d="M119 60 Q133 53 152 54 Q163 55 170 62"
-                fill="none" stroke="rgba(232,176,64,.5)" stroke-width="1.8"/>
-          <!-- Tank — La Emilia brand text -->
-          <text x="122" y="67" font-family="Arial,sans-serif" font-size="5.4" fill="#e8b040" font-weight="bold" letter-spacing=".5">LA EMILIA</text>
-          <text x="125" y="73.5" font-family="Arial,sans-serif" font-size="3.9" fill="rgba(255,255,255,.6)" letter-spacing=".3">MOTOMEL</text>
+          <!-- Chassis: lower rail + backbone + front fork, straight segments only -->
+          <path d="M55,87 L100,94 L178,86 L195,87" fill="none" stroke="#e8b040" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M100,94 L96,64" fill="none" stroke="#e8b040" stroke-width="3" stroke-linecap="round"/>
+          <path d="M96,64 L166,48" fill="none" stroke="#e8b040" stroke-width="3" stroke-linecap="round"/>
+          <path d="M166,48 L195,87" fill="none" stroke="#e8b040" stroke-width="3.2" stroke-linecap="round"/>
+          <!-- Seat -->
+          <rect x="62" y="60" width="40" height="15" rx="5" fill="rgba(12,15,22,.95)" stroke="rgba(232,176,64,.3)" stroke-width="1.3"/>
+          <!-- Fuel tank — La Emilia red, single smooth closed curve -->
+          <path d="M98,50 Q128,40 158,47 Q166,49 166,58 Q166,66 155,68 L106,72 Q96,70 96,60 Q96,53 98,50Z"
+                fill="rgba(192,57,43,.68)" stroke="#c0392b" stroke-width="1.8"/>
+          <text x="103" y="61" font-family="Arial,sans-serif" font-size="6" fill="#e8b040" font-weight="bold" letter-spacing=".5">LA EMILIA</text>
+          <text x="106" y="67" font-family="Arial,sans-serif" font-size="4.3" fill="rgba(255,255,255,.65)" letter-spacing=".3">MOTOMEL</text>
           <!-- Engine block -->
-          <rect x="106" y="73" width="42" height="25" rx="4" fill="rgba(17,21,32,.9)" stroke="rgba(232,176,64,.35)" stroke-width="1.5"/>
-          <!-- Engine fins -->
+          <rect x="70" y="76" width="36" height="20" rx="3" fill="rgba(17,21,32,.9)" stroke="rgba(232,176,64,.35)" stroke-width="1.4"/>
           <g stroke="rgba(232,176,64,.2)" stroke-width=".8">
-            <line x1="110" y1="76" x2="110" y2="94"/><line x1="114" y1="76" x2="114" y2="94"/>
-            <line x1="118" y1="76" x2="118" y2="94"/><line x1="122" y1="76" x2="122" y2="94"/>
+            <line x1="75" y1="79" x2="75" y2="93"/><line x1="80" y1="79" x2="80" y2="93"/>
+            <line x1="85" y1="79" x2="85" y2="93"/><line x1="90" y1="79" x2="90" y2="93"/>
           </g>
-          <!-- Exhaust pipe with heat glow tip -->
-          <path d="M106 96 Q92 102 70 99 Q56 97 48 92"
-                fill="none" stroke="#c0392b" stroke-width="2.6" stroke-linecap="round"/>
-          <circle cx="47" cy="92" r="2.8" fill="rgba(192,57,43,.5)" stroke="#c0392b" stroke-width="1"/>
+          <!-- Exhaust pipe -->
+          <path d="M72,94 Q52,100 32,97 Q22,95 16,90" fill="none" stroke="#c0392b" stroke-width="2.6" stroke-linecap="round"/>
+          <circle cx="15" cy="90" r="3" fill="rgba(192,57,43,.55)" stroke="#c0392b" stroke-width="1"/>
           <!-- Rear light -->
-          <circle cx="64" cy="63" r="3" fill="rgba(192,57,43,.5)" stroke="#c0392b" stroke-width="1"/>
-          <!-- Handlebars (clip-on, sporty) -->
-          <path d="M160 40 L168 30 M160 40 L170 42"
-                fill="none" stroke="#e8b040" stroke-width="2.5" stroke-linecap="round"/>
-          <!-- Mirror -->
-          <circle cx="171" cy="27" r="2.2" fill="none" stroke="rgba(232,176,64,.55)" stroke-width="1.3"/>
-          <!-- Windscreen -->
-          <path d="M160 40 Q163 30 172 27 Q176 36 169 41Z"
-                fill="rgba(90,173,255,.08)" stroke="rgba(90,173,255,.3)" stroke-width="1"/>
-          <!-- Headlight assembly -->
-          <ellipse cx="203" cy="65" rx="8.5" ry="7.5" fill="rgba(232,176,64,.12)" stroke="#e8b040" stroke-width="1.5"/>
-          <ellipse cx="203" cy="65" rx="5.2" ry="4.7" fill="rgba(232,176,64,.38)"/>
-          <!-- Light beam -->
-          <path d="M212 60 L242 49 M212 65 L245 65 M212 70 L241 78"
-                stroke="rgba(232,176,64,.2)" stroke-width="1.2" stroke-linecap="round"/>
+          <circle cx="63" cy="65" r="2.6" fill="rgba(192,57,43,.55)" stroke="#c0392b" stroke-width="1"/>
+          <!-- Handlebar (clip-on) -->
+          <path d="M166,48 L176,36" fill="none" stroke="#e8b040" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M166,48 L178,50" fill="none" stroke="#e8b040" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="179" cy="33" r="2.2" fill="none" stroke="rgba(232,176,64,.6)" stroke-width="1.3"/>
+          <!-- Headlight -->
+          <ellipse cx="207" cy="63" rx="8.5" ry="7.5" fill="rgba(232,176,64,.14)" stroke="#e8b040" stroke-width="1.5"/>
+          <ellipse cx="207" cy="63" rx="5" ry="4.4" fill="rgba(232,176,64,.4)"/>
+          <path d="M215,58 L244,48 M215,63 L246,63 M215,68 L243,76" stroke="rgba(232,176,64,.2)" stroke-width="1.2" stroke-linecap="round"/>
         </svg>
       </div>
       <div class="bike-hero-text">
@@ -780,6 +757,10 @@ tr:hover td{background:rgba(232,176,64,.015);}
         <div class="sw" style="width:130px;">
           <select class="fs" id="f-adicional" onchange="refreshDashboard()">
             <option value="">— Gasto Adicional —</option>
+            <option value="aforo">AFORO</option>
+            <option value="costo_adic_parada">Adicional Parada</option>
+            <option value="costo_estadia_completa">Estadía Completa</option>
+            <option value="costo_media_estadia">Media Estadía</option>
             <option value="costo_interplanta">Interplanta</option>
             <option value="costo_estadia">Estadía</option>
             <option value="costo_peajes">Peajes / Carga</option>
@@ -874,6 +855,15 @@ tr:hover td{background:rgba(232,176,64,.015);}
         <div class="fg" style="margin:0;"><label>Transporte</label><div class="sw"><select class="fs" id="bdg-trans" onchange="refreshBodega()"><option value="">Todos</option></select></div></div>
         <div class="fg" style="margin:0;"><label>Tipo</label><div class="sw"><select class="fs" id="bdg-tipo" onchange="refreshBodega()"><option value="">Todos</option><option value="SEMI DOBLE PISO">Semi DP</option><option value="SEMI SIMPLE">Semi Simple</option><option value="CHASIS DOBLE PISO">Chasis DP</option><option value="CHASIS SIMPLE">Chasis Simple</option></select></div></div>
         <div class="fg" style="margin:0;"><label>Zona</label><div class="sw"><select class="fs" id="bdg-zona" onchange="refreshBodega()"><option value="">Todas</option><option value="GBA">GBA</option><option value="PBA">PBA</option><option value="SUR">SUR</option><option value="NEA">NEA</option><option value="NOA">NOA</option><option value="CUYO">CUYO</option><option value="CENTRO">CENTRO</option></select></div></div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:12px;">
+        <div class="fg" style="margin:0;"><label>Ciudad Destino</label><div class="sw"><select class="fs" id="bdg-ciudad" onchange="refreshBodega()"><option value="">Todas</option></select></div></div>
+      </div>
+      <div class="fg" style="margin:12px 0 0;">
+        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:12px;text-transform:none;letter-spacing:0;">
+          <input type="checkbox" id="bdg-excl-aforo" onchange="refreshBodega()" style="accent-color:var(--accent);width:14px;height:14px;">
+          Excluir del análisis las unidades cargadas en destino "AFORO" (el resto del viaje se sigue sumando)
+        </label>
       </div>
     </div>
 
@@ -998,6 +988,35 @@ tr:hover td{background:rgba(232,176,64,.015);}
         <div class="slbl mb12">Top Transportes (Ocupación)</div>
         <div id="bdg-trans-list" style="display:flex;flex-direction:column;gap:10px;"></div>
       </div>
+    </div>
+
+    <div class="card mb16">
+      <div class="flex fac fjb mb12">
+        <div class="slbl" style="margin:0;">Mapa Interactivo de Argentina — Distribución por Zona</div>
+        <div class="mono text10 cm">Refleja los filtros activos arriba · tamaño y color de burbuja = camiones · pasá el mouse o tocá una zona para ver camiones, motos y clientes</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 300px;gap:16px;">
+        <div style="position:relative;">
+          <div id="bdg-zona-mapa-grafico" style="position:relative;min-height:420px;height:420px;overflow:hidden;border-radius:10px;background:var(--s2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;"></div>
+          <div style="position:absolute;top:10px;right:10px;z-index:9;display:flex;flex-direction:column;gap:4px;">
+            <button type="button" class="btn btn-secondary btn-sm" title="Acercar" onclick="bdgMapZoom(1.25)" style="width:30px;height:30px;padding:0;font-weight:900;font-size:15px;line-height:1;">+</button>
+            <button type="button" class="btn btn-secondary btn-sm" title="Alejar" onclick="bdgMapZoom(0.8)" style="width:30px;height:30px;padding:0;font-weight:900;font-size:15px;line-height:1;">−</button>
+            <button type="button" class="btn btn-secondary btn-sm" title="Restablecer zoom" onclick="bdgMapZoomReset()" style="width:30px;height:30px;padding:0;font-size:11px;line-height:1;">⟲</button>
+          </div>
+        </div>
+        <div>
+          <div class="mono text10 cm mb8" style="text-transform:uppercase;letter-spacing:1px;">Detalle por Zona</div>
+          <div id="bdg-zona-dist-list" style="display:flex;flex-direction:column;gap:8px;max-height:340px;overflow-y:auto;"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card mb16">
+      <div class="flex fac fjb mb12">
+        <div class="slbl" style="margin:0;">Dispersión de Distribución — Zona × Transportista</div>
+        <div class="mono text10 cm">Tamaño de burbuja = motos equiv. entregadas · pasá el mouse sobre cada una para ver camiones y unidades</div>
+      </div>
+      <div id="bdg-matriz-zona-trans" style="overflow-x:auto;"></div>
     </div>
 
     <div class="card mb16">
@@ -1149,6 +1168,10 @@ tr:hover td{background:rgba(232,176,64,.015);}
         <div class="sw" style="width:145px;">
           <select class="fs" id="rep-adicional-filter" onchange="renderReportes()">
             <option value="">— Gasto Adicional —</option>
+            <option value="aforo">AFORO</option>
+            <option value="costo_adic_parada">Adicional Parada</option>
+            <option value="costo_estadia_completa">Estadía Completa</option>
+            <option value="costo_media_estadia">Media Estadía</option>
             <option value="costo_interplanta">Interplanta</option>
             <option value="costo_estadia">Estadía</option>
             <option value="costo_peajes">Peajes / Carga</option>
@@ -1189,7 +1212,7 @@ tr:hover td{background:rgba(232,176,64,.015);}
       <div class="slbl">Detalle de viajes — con gasto total</div>
       <div class="tw">
         <table>
-          <thead><tr><th>#</th><th>Tracking</th><th>Fecha</th><th>Empresa</th><th>Cliente</th><th>Localidad</th><th>Chofer</th><th>Transporte</th><th>Unidad</th><th>Hs Turno</th><th>Pie</th><th>Cajón</th><th>Total Motos</th><th>Tarifa Base</th><th>Costo Cajón</th><th>Estadía</th><th>Extra Cliente</th><th class="ca">GASTO TOTAL</th><th>Estado</th></tr></thead>
+          <thead><tr><th>#</th><th>Tracking</th><th>Fecha</th><th>Empresa</th><th>Cliente</th><th>Localidad</th><th>Chofer</th><th>Transporte</th><th>Unidad</th><th>Hs Turno</th><th>Pie</th><th>Cajón</th><th>Total Motos</th><th>Tarifa Base</th><th>Costo Cajón</th><th>Estadía</th><th>Adicional Parada</th><th>Extra Cliente</th><th class="ca">GASTO TOTAL</th><th>Estado</th></tr></thead>
           <tbody id="rep-tbody"></tbody>
           <tfoot id="rep-tfoot" style="font-weight:700;border-top:2px solid var(--border2);"></tfoot>
         </table>
@@ -1213,7 +1236,7 @@ tr:hover td{background:rgba(232,176,64,.015);}
                 <option value="CAR">Carniato</option>
                 <option value="NESSA">Nessa</option>
                 <option value="CIARI">Ciari</option>
-                <option value="C60">Ciari 60%</option>
+                <option value="C60">Ciari 50%</option>
                 <option value="SOLIS">Gabriela Solis</option>
               </select></div>
             </div>
@@ -1351,7 +1374,7 @@ tr:hover td{background:rgba(232,176,64,.015);}
               <option value="CAR">Carniato</option>
               <option value="NESSA">Nessa</option>
               <option value="CIARI">Ciari</option>
-              <option value="C60">Ciari 60%</option>
+              <option value="C60">Ciari 50%</option>
               <option value="SOLIS">Gabriela Solis</option>
             </select></div>
           </div>
@@ -1448,12 +1471,12 @@ tr:hover td{background:rgba(232,176,64,.015);}
   <!-- ═══════════ ADICIONALES (catálogo reutilizable) ═══════════ -->
   <div class="page" id="page-adicionales">
     <div class="flex fac fjb mb12">
-      <div class="slbl" style="margin:0;">➕ Catálogo de Adicionales · Cliente / Parada</div>
+      <div class="slbl" style="margin:0;">➕ Catálogo de Adicionales · Por Transportista</div>
       <button class="btn btn-primary btn-sm" onclick="openAdicionalModal()">+ Nuevo Adicional</button>
     </div>
 
     <div style="background:rgba(90,173,255,.05);border:1px solid rgba(90,173,255,.12);border-radius:8px;padding:10px 14px;margin-bottom:12px;font-family:'DM Mono';font-size:10px;color:var(--muted2);">
-      💡 Los adicionales definidos acá quedan disponibles para asociar a un Cliente (ficha de cliente) o para agregarlos manualmente en cualquier viaje. Tipo <span class="ca">Fijo ($)</span> suma un monto constante · Tipo <span class="ca">Porcentaje (%)</span> se calcula sobre el costo base del viaje (km × tarifa).
+      💡 Cada adicional tiene una tarifa propia por transportista. <span class="ca">Adicional Parada</span> se multiplica automáticamente por las motos cargadas en el viaje, según la tarifa del transportista seleccionado · <span class="ca">Estadía Completa</span> y <span class="ca">Media Estadía</span> son montos fijos por viaje que varían según el transportista · <span class="ca">Personalizado</span> permite un concepto propio (fijo $ o % sobre el costo base).
     </div>
 
     <div class="g3 mb12">
@@ -1462,16 +1485,18 @@ tr:hover td{background:rgba(232,176,64,.015);}
         <input type="text" class="fi" id="adic-search" placeholder="Descripción..." oninput="renderAdicionales()">
       </div>
       <div class="fg" style="margin:0;">
-        <label>Tipo</label>
+        <label>Concepto</label>
         <div class="sw"><select class="fs" id="adic-f-tipo" onchange="renderAdicionales()">
           <option value="">— Todos —</option>
-          <option value="fijo">Valor Fijo ($)</option>
-          <option value="porcentaje">Porcentaje (%)</option>
+          <option value="parada">Adicional Parada</option>
+          <option value="estadia_completa">Estadía Completa</option>
+          <option value="media_estadia">Media Estadía</option>
+          <option value="personalizado">Personalizado</option>
         </select></div>
       </div>
       <div class="fg" style="margin:0;">
-        <label>Asociado a Cliente</label>
-        <div class="sw"><select class="fs" id="adic-f-cliente" onchange="renderAdicionales()">
+        <label>Transportista</label>
+        <div class="sw"><select class="fs" id="adic-f-trans" onchange="renderAdicionales()">
           <option value="">— Todos —</option>
         </select></div>
       </div>
@@ -1481,7 +1506,7 @@ tr:hover td{background:rgba(232,176,64,.015);}
       <div class="tw">
         <table>
           <thead><tr>
-            <th>Descripción</th><th>Tipo</th><th>Monto / %</th><th>Cliente asociado</th><th>Parada / Zona</th><th>Estado</th><th style="width:90px;">Acciones</th>
+            <th>Descripción / Concepto</th><th>Cálculo</th><th>Tarifas por transportista</th><th>Parada / Zona</th><th>Estado</th><th style="width:90px;">Acciones</th>
           </tr></thead>
           <tbody id="adic-tbody"></tbody>
         </table>
@@ -1984,7 +2009,7 @@ tr:hover td{background:rgba(232,176,64,.015);}
     <div class="card">
       <div class="tw">
         <table>
-          <thead><tr><th>Usuario</th><th>Email</th><th>Rol</th><th>Estado</th><th>Último acceso</th><th>Operaciones</th><th>Creado</th><th>Acciones</th></tr></thead>
+          <thead><tr><th>Usuario</th><th>Email</th><th>Rol</th><th>Accesos</th><th>Estado</th><th>Último acceso</th><th>Operaciones</th><th>Creado</th><th>Acciones</th></tr></thead>
           <tbody id="usr-tbody"></tbody>
         </table>
       </div>
@@ -2630,6 +2655,13 @@ Equipo La Emilia</div>
         <option value="inactivo">Inactivo</option>
       </select></div>
     </div>
+    <div class="fg">
+      <div class="flex fac fjb" style="margin-bottom:6px;">
+        <label style="margin:0;">Accesos por módulo <span style="font-size:9px;color:var(--muted);">(solo editable por admin)</span></label>
+        <span class="btn btn-secondary btn-sm" style="font-size:10px;padding:4px 8px;" onclick="applyRoleDefaultsToPermCheckboxes()">Restablecer según rol</span>
+      </div>
+      <div id="nu-perm-grid" style="border:1px solid var(--border);border-radius:8px;padding:10px;max-height:260px;overflow-y:auto;"></div>
+    </div>
     <div class="login-err" id="nu-err" style="display:none;background:var(--rdim);border:1px solid rgba(240,69,69,.3);border-radius:7px;padding:8px 12px;margin-bottom:12px;font-size:12px;color:var(--red);"></div>
     <!-- EmailJS status banner -->
     <div id="nu-emailjs-banner" style="background:rgba(90,173,255,.07);border:1px solid rgba(90,173,255,.2);border-radius:7px;padding:8px 12px;margin-bottom:12px;font-size:11px;color:var(--blue);display:flex;align-items:center;gap:8px;">
@@ -2960,7 +2992,7 @@ Equipo La Emilia</div>
       <span class="mono text10 cm" style="text-align:center;color:var(--blue);">Pie Lesa</span>
       <span class="mono text10 cm" style="text-align:center;color:var(--blue);">Cajón Lesa</span>
       <span class="mono text10 cm" style="text-align:center;">Estadía ($)</span>
-      <span class="mono text10 cm" style="text-align:center;">Adic. paradas ($)</span>
+      <span class="mono text10 cm" style="text-align:center;">Adic. paradas (u)</span>
       <span class="mono text10 cm" style="text-align:center;">Subtotal</span>
       <span></span>
     </div>
@@ -3095,25 +3127,33 @@ Equipo La Emilia</div>
   <div class="modal">
     <div class="mh"><div class="mt-title" id="adic-modal-title">NUEVO ADICIONAL</div><div class="mc" onclick="closeAdicionalModal()">✕</div></div>
 
-    <div class="fg"><label>Descripción*</label><input type="text" class="fi" id="adic-m-desc" placeholder="Ej: Descarga manual, Zona alejada, Urgente"></div>
-
-    <div class="fr2 mb12">
-      <div class="fg" style="margin:0;"><label>Tipo</label>
-        <div class="sw"><select class="fs" id="adic-m-tipo" onchange="updateAdicMontoLabel()">
-          <option value="fijo">Valor Fijo ($)</option>
-          <option value="porcentaje">Porcentaje (%)</option>
-        </select></div>
-      </div>
-      <div class="fg" style="margin:0;"><label id="adic-m-monto-lbl">Monto fijo ($)</label><input type="number" class="fi" id="adic-m-monto" min="0" step="0.01" placeholder="0"></div>
+    <div class="fg"><label>Concepto</label>
+      <div class="sw"><select class="fs" id="adic-m-concepto" onchange="onAdicConceptoChange()">
+        <option value="parada">Adicional Parada (por unidad cargada)</option>
+        <option value="estadia_completa">Estadía Completa</option>
+        <option value="media_estadia">Media Estadía</option>
+        <option value="personalizado">Personalizado</option>
+      </select></div>
     </div>
 
-    <div class="fr2 mb12">
-      <div class="fg" style="margin:0;"><label>Cliente asociado (opcional)</label>
-        <div class="sw"><select class="fs" id="adic-m-cliente">
-          <option value="">— General (sin cliente) —</option>
-        </select></div>
-      </div>
-      <div class="fg" style="margin:0;"><label>Parada / Zona (opcional)</label><input type="text" class="fi" id="adic-m-parada" placeholder="Ej: Depósito Norte"></div>
+    <div class="fg"><label>Descripción*</label><input type="text" class="fi" id="adic-m-desc" placeholder="Ej: Descarga manual, Zona alejada, Urgente"></div>
+
+    <div class="fg" id="adic-m-calculo-wrap" style="display:none;">
+      <label>Tipo de cálculo</label>
+      <div class="sw"><select class="fs" id="adic-m-calculo">
+        <option value="fijo">Valor Fijo ($)</option>
+        <option value="porcentaje">Porcentaje (%) sobre costo base</option>
+      </select></div>
+    </div>
+    <div id="adic-m-calculo-hint" class="mono text10 cm mb12" style="display:none;"></div>
+
+    <div class="fg">
+      <label>Tarifa por transportista <span style="font-size:9px;color:var(--muted)">(dejá en blanco los transportistas que no aplican)</span></label>
+      <div id="adic-m-tarifas-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;border:1px solid var(--border);border-radius:8px;padding:10px;"></div>
+    </div>
+
+    <div class="fg mb12">
+      <label>Parada / Zona (opcional)</label><input type="text" class="fi" id="adic-m-parada" placeholder="Ej: Depósito Norte">
     </div>
 
     <div class="fg">
@@ -3311,7 +3351,7 @@ const TARIFFS = [
 const BASE_TRANS_KEYS = [
   {k:'NG',n:'Nueva Generacion'},{k:'LIB',n:'Logistica Liborio'},
   {k:'CAR',n:'Carniato'},{k:'NESSA',n:'Nessa'},
-  {k:'CIARI',n:'Ciari'},{k:'C60',n:'Ciari 60%'},{k:'SOLIS',n:'Gabriela Solis'}
+  {k:'CIARI',n:'Ciari'},{k:'C60',n:'Ciari 50%'},{k:'SOLIS',n:'Gabriela Solis'}
 ];
 let TRANS_KEYS = [...BASE_TRANS_KEYS];
 
@@ -3911,7 +3951,7 @@ async function saveUsersDB(){
     if(typeof firebase === 'undefined' || !FB.users) return;
     const obj={};
     USERS_DB.forEach(u=>{ if(u&&u.id) obj[u.id.replace(/[.#$[\]]/g,'_')]=u; });
-    await FB.users.update(JSON.parse(JSON.stringify(obj)));
+    await FB.users.set(JSON.parse(JSON.stringify(obj)));
   }catch(e){ console.warn('saveUsersDB Firebase:', e.message); }
 }
 
@@ -4021,13 +4061,17 @@ async function doLogin(){
   btn.textContent = 'VERIFICANDO...';
   
   try {
-    if(USERS_DB.length === 0){ await loadUsersDB(); }
+    // SIEMPRE traer la versión más reciente de USERS_DB antes de autenticar, para que
+    // los permisos recién tildados por el admin (checkboxes) se respeten de inmediato
+    // y no se use una copia en memoria desactualizada de un login anterior en esta pestaña.
+    await loadUsersDB();
     if(USERS_DB.length === 0){ seedAdminUser(); }
     const user=USERS_DB.find(u=>u.email===email);
     if(!user){ errEl.style.display='';errEl.textContent='Email no registrado.'; return; }
     if(user.status==='inactivo'){ errEl.style.display='';errEl.textContent='Tu cuenta está inactiva.'; return; }
     if(user.passHash!==hashPass(pass)){ errEl.style.display='';errEl.textContent='Contraseña incorrecta.'; return; }
-    CU={id:user.id,name:user.name,role:user.role,initials:user.initials,color:user.color||ROLE_COLORS[user.role]||'#e8b040',email:user.email};
+    if(!user.permisos || typeof user.permisos!=='object'){ user.permisos = getDefaultPermisos(user.role); saveUsersDB(); }
+    CU={id:user.id,name:user.name,role:user.role,initials:user.initials,color:user.color||ROLE_COLORS[user.role]||'#e8b040',email:user.email,permisos:effectivePermisos(user)};
     user.lastAccess=new Date().toISOString(); saveUsersDB();
     
     updateSidebar(CU.role);
@@ -4069,14 +4113,8 @@ async function doRegister(){
   const initials=name.split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2);
   const role=USERS_DB.length===0?'admin':'dispatcher';
   const newUser={id:'usr_'+Date.now(),name,email,passHash:hashPass(pass),role,status:'activo',ops:0,lastAccess:null,createdAt:new Date().toISOString(),initials,color:ROLE_COLORS[role]||'#e8b040'};
-  USERS_DB.push(newUser); 
-  _saveUsersLocal();
-  try {
-    if(typeof firebase !== 'undefined' && FB.users) {
-      await FB.users.child(newUser.id).set(newUser);
-    }
-  } catch(e) { console.warn('Register Firebase set error:', e); }
-  CU={id:newUser.id,name,role,initials,color:newUser.color,email};
+  USERS_DB.push(newUser); await saveUsersDB();
+  CU={id:newUser.id,name,role,initials,color:newUser.color,email,permisos:effectivePermisos(newUser)};
   launchApp();
   showNotif('\u2705','Cuenta creada',`\u00a1Bienvenido/a ${name}!`);
 }
@@ -4194,7 +4232,7 @@ const PAGE_CFG = {
   reportes:    {title:'REPORTES',sub:'Análisis y gastos',btn:'⬇ CSV',fn:'exportReportCSV()'},
   cotizacion:  {title:'COTIZADOR',sub:'Cálculo de costos',btn:'CALCULAR',fn:'calcCot()'},
   tarifario:   {title:'TARIFARIO 2026',sub:'Precios por rango de KM y transportista',btn:'+ AMPLIAR RANGOS',fn:'tarKmAgregarRangos()'},
-  adicionales: {title:'ADICIONALES',sub:'Catálogo de adicionales por cliente / parada',btn:'+ ADICIONAL',fn:'openAdicionalModal()'},
+  adicionales: {title:'ADICIONALES',sub:'Tarifario de adicionales por transportista',btn:'+ ADICIONAL',fn:'openAdicionalModal()'},
   flota:       {title:'FLOTA',sub:'Camiones y unidades',btn:'+ CAMIÓN',fn:'openNewTruck()'},
   transportes: {title:'GESTIÓN DE TRANSPORTES',sub:'Empresas de transporte',btn:'+ TRANSPORTE',fn:'openNewTransporte()'},
   destinos:    {title:'GESTIÓN DE DESTINOS',  sub:'Destinos disponibles',        btn:'+ DESTINO',           fn:'openNewDestino()'},
@@ -4213,39 +4251,72 @@ const roleWhitelist = {
   dispatcher: ['bodega', 'turnero', 'cotizacion', 'ruteador']
 };
 
+// ═══════════════════════════════════════════════
+//  PERMISOS GRANULARES POR MÓDULO (v14)
+//  Cada usuario puede tener un objeto permisos {modulo:true/false}
+//  que el admin define por checkbox. Si el usuario no tiene permisos
+//  guardados todavía (usuarios viejos), se usa como fallback el
+//  roleWhitelist según su rol, para no romper compatibilidad.
+// ═══════════════════════════════════════════════
+const MODULOS = [
+  {k:'dashboard',   n:'Dashboard',            sec:'Principal'},
+  {k:'bodega',      n:'Dashboard Bodega',     sec:'Principal'},
+  {k:'reportes',    n:'Reportes',             sec:'Principal'},
+  {k:'turnero',     n:'Turnero',              sec:'Operaciones'},
+  {k:'ruteador',    n:'Ruteador',             sec:'Operaciones'},
+  {k:'cotizacion',  n:'Cotizador',            sec:'Finanzas'},
+  {k:'tarifario',   n:'Tarifario',            sec:'Finanzas'},
+  {k:'adicionales', n:'Adicionales',          sec:'Finanzas'},
+  {k:'admin',       n:'Administración',       sec:'Finanzas'},
+  {k:'flota',       n:'Flota',                sec:'Datos maestros'},
+  {k:'transportes', n:'Transportes',          sec:'Datos maestros'},
+  {k:'destinos',    n:'Destinos',             sec:'Datos maestros'},
+  {k:'clientes',    n:'Clientes',             sec:'Datos maestros'},
+  {k:'unidades',    n:'Unidades de Carga',    sec:'Datos maestros'},
+  {k:'usuarios',    n:'Usuarios',             sec:'Administración del sistema'},
+  {k:'config',      n:'Configuración',        sec:'Administración del sistema'},
+];
+
+function getDefaultPermisos(role){
+  const allowed = roleWhitelist[role] || [];
+  const perm = {};
+  MODULOS.forEach(m=>{ perm[m.k] = allowed.includes(m.k); });
+  return perm;
+}
+
+// Devuelve el mapa de permisos efectivo de un usuario (guardado o, si no tiene, el default de su rol)
+function effectivePermisos(user){
+  if(user && user.permisos && typeof user.permisos==='object') return user.permisos;
+  return getDefaultPermisos(user?.role);
+}
+
+// ¿Puede CU acceder al módulo `id`? El admin siempre tiene acceso total.
+function canAccess(id){
+  if(!CU || !CU.role) return true;
+  if(CU.role==='admin') return true;
+  const perm = CU.permisos || getDefaultPermisos(CU.role);
+  return !!perm[id];
+}
+
 function updateSidebar(role) {
-  const principal = document.getElementById('nav-principal');
-  const operaciones = document.getElementById('nav-operaciones');
-  const finanzas = document.getElementById('nav-finanzas');
-  const datosMaestros = document.getElementById('nav-datos-maestros');
-  const adminSec = document.getElementById('nav-admin-sec');
-  const adminItem = document.getElementById('nav-admin-item');
-  const tarifarioItem = document.getElementById('nav-tarifario-item');
+  // Mostrar/ocultar cada ítem del menú según los permisos GRANULARES del
+  // usuario actual (CU.permisos), no ya según un rol fijo. El admin
+  // siempre ve todo (canAccess() devuelve true para admin).
+  document.querySelectorAll('.nav-item').forEach(item=>{
+    const onclick = item.getAttribute('onclick')||'';
+    const m = onclick.match(/go\('([a-z_]+)'\)/);
+    if(!m) return; // ítems sin navegación (si los hubiera) quedan visibles
+    const modId = m[1];
+    item.style.display = canAccess(modId) ? 'flex' : 'none';
+  });
 
-  if(principal) principal.style.display = 'block';
-  if(operaciones) operaciones.style.display = 'block';
-  if(finanzas) finanzas.style.display = 'block';
-  if(datosMaestros) datosMaestros.style.display = 'block';
-  if(adminSec) adminSec.style.display = 'none';
-  if(adminItem) adminItem.style.display = 'none';
-  if(tarifarioItem) tarifarioItem.style.display = 'flex';
-  
-  const navDashboardItem = document.querySelector('.nav-item[onclick="go(\\\'dashboard\\\')"]');
-  if(navDashboardItem) navDashboardItem.style.display = 'flex';
-
-  if (role === 'admin') {
-    if(adminSec) adminSec.style.display = 'block';
-    if(adminItem) adminItem.style.display = 'flex';
-  } else if (role === 'gerencia') {
-    if(adminItem) adminItem.style.display = 'flex';
-  } else if (role === 'operador' || role === 'dispatcher') {
-    if(tarifarioItem) tarifarioItem.style.display = 'none';
-    if(datosMaestros) datosMaestros.style.display = 'none';
-  }
-
-  if (role === 'dispatcher') {
-    if(navDashboardItem) navDashboardItem.style.display = 'none';
-  }
+  // Colapsar el título de cada sección si ninguno de sus ítems quedó visible
+  ['nav-principal','nav-operaciones','nav-finanzas','nav-datos-maestros','nav-admin-sec'].forEach(secId=>{
+    const sec = document.getElementById(secId);
+    if(!sec) return;
+    const anyVisible = Array.from(sec.querySelectorAll('.nav-item')).some(i=>i.style.display!=='none');
+    sec.style.display = anyVisible ? 'block' : 'none';
+  });
 }
 
 function getEstimatedTime(transKey) {
@@ -4253,12 +4324,9 @@ function getEstimatedTime(transKey) {
 }
 
 function go(id){
-  if (CU && CU.role) {
-    const allowed = roleWhitelist[CU.role] || [];
-    if (!allowed.includes(id)) {
-      showNotif('⚠️', 'No tienes permiso', 'Tu rol no permite acceder a esta sección.');
-      return;
-    }
+  if (CU && CU.role && !canAccess(id)) {
+    showNotif('⚠️', 'No tienes permiso', 'Tu usuario no tiene acceso a esta sección.');
+    return;
   }
 
   populateTransSelects();
@@ -4288,7 +4356,7 @@ function go(id){
   if(id==='ruteador')  { rutIniciarMapa(); rutFiltrarClientes(); rutCargarSelectUnidades(); }
   if(id==='clientes')  { if(!S.clientes) S.clientes=[]; cliRender(); }
   if(id==='unidades')  { if(!S.unidades) S.unidades=[]; uniRender(); }
-  if(id==='adicionales'){ if(!S.adicionales) S.adicionales=[]; populateAdicionalClienteFilter(); renderAdicionales(); }
+  if(id==='adicionales'){ if(!S.adicionales) S.adicionales=[]; populateAdicionalTransFilter(); renderAdicionales(); }
   if(id==='admin')       renderAdminModule();
   updateBadges();
 }
@@ -4303,7 +4371,47 @@ function resetBodegaFilters(){
   document.getElementById('bdg-trans').value='';
   document.getElementById('bdg-tipo').value='';
   document.getElementById('bdg-zona').value='';
+  const bdgCiudad=document.getElementById('bdg-ciudad'); if(bdgCiudad) bdgCiudad.value='';
+  const exclAforo=document.getElementById('bdg-excl-aforo'); if(exclAforo) exclAforo.checked=false;
   refreshBodega();
+}
+
+// ¿Este viaje tiene como destino (único o entre sus paradas) "AFORO"?
+// AFORO se usa como destino "placeholder" en viajes cargados solo para
+// registrar un control de capacidad/aforo, no una entrega real a un cliente;
+// por eso no deben distorsionar las estadísticas de ocupación de Bodega.
+function tripEsDestinoAforo(t){
+  const norm = s => (s||'').toString().trim().toUpperCase();
+  if(norm(t.localidad)==='AFORO') return true;
+  return (t.dests||[]).some(d => norm(d.ciudad)==='AFORO' || norm(d.desc)==='AFORO');
+}
+
+// Devuelve {pie, caj} del viaje. Si exclAforo=true, descuenta SOLO las unidades
+// cargadas en la/s parada/s con destino "AFORO" (no descarta el viaje entero):
+// el resto de los destinos del mismo viaje se siguen sumando normalmente.
+function getTripPieCajEfectivo(t, exclAforo){
+  const norm = s => (s||'').toString().trim().toUpperCase();
+  const esAforoDest = d => norm(d.ciudad)==='AFORO' || norm(d.desc)==='AFORO';
+
+  if(!exclAforo){
+    const pie = t.motos_pie !== undefined ? t.motos_pie : (t.dests||[]).reduce((s,d)=>s+(d.pie||0),0);
+    const caj = t.motos_cajon !== undefined ? t.motos_cajon : (t.dests||[]).reduce((s,d)=>s+(d.cajon||0),0);
+    return {pie, caj};
+  }
+
+  if(t.dests && t.dests.length){
+    // Sumar solo las paradas que NO son AFORO; el resto del viaje se computa igual que siempre
+    const pie = t.dests.reduce((s,d)=>s+(esAforoDest(d)?0:(d.pie||0)),0);
+    const caj = t.dests.reduce((s,d)=>s+(esAforoDest(d)?0:(d.cajon||0)),0);
+    return {pie, caj};
+  }
+  // Viajes legado sin detalle de paradas: si TODO el viaje es "AFORO" (localidad única),
+  // no queda carga real que sumar. Si no es AFORO, se usa el dato agregado del viaje tal cual.
+  if(norm(t.localidad)==='AFORO') return {pie:0, caj:0};
+  return {
+    pie: t.motos_pie !== undefined ? t.motos_pie : 0,
+    caj: t.motos_cajon !== undefined ? t.motos_cajon : 0
+  };
 }
 
 function refreshBodega(){
@@ -4315,15 +4423,36 @@ function refreshBodega(){
   const trans = document.getElementById('bdg-trans').value;
   const tipo = document.getElementById('bdg-tipo').value;
   const zona = document.getElementById('bdg-zona').value;
+  const ciudad = document.getElementById('bdg-ciudad')?.value || '';
+  const exclAforo = document.getElementById('bdg-excl-aforo')?.checked || false;
 
-  // Actualizar select de transporte con TODOS los transportistas configurados
+  // Actualizar select de transporte con TODOS los transportistas — igual que en Dashboard/Reportes:
+  // catálogo oficial (TRANS_KEYS) + cualquier transportista que aparezca en flota o viajes,
+  // aunque no esté en el catálogo fijo (ej. transportistas nuevos cargados ad-hoc).
   const bdgTrans = document.getElementById('bdg-trans');
   if(bdgTrans && bdgTrans.options.length <= 1){
-    const names = [...new Set(TRANS_KEYS.map(t=>t.n))].filter(Boolean).sort();
+    const tK = TRANS_KEYS.map(t=>t.n);
+    const tF = (S.fleet||[]).map(f=>f.transporte);
+    const tT = (S.trips||[]).map(t=>t.transporte);
+    const names = [...new Set([...tK, ...tF, ...tT])].filter(Boolean).sort();
     names.forEach(n => {
       const opt = document.createElement('option');
       opt.value = n; opt.textContent = n;
       bdgTrans.appendChild(opt);
+    });
+  }
+
+  // Actualizar select de Ciudad Destino con TODAS las ciudades presentes en los viajes
+  // (incluye "AFORO", para poder aislarlo puntualmente además de la opción de excluirlo)
+  const bdgCiudad = document.getElementById('bdg-ciudad');
+  if(bdgCiudad && bdgCiudad.options.length <= 1){
+    const ciudades = [...new Set(
+      S.trips.flatMap(t => (t.dests||[]).map(d=>(d.ciudad||'').trim()).concat([(t.localidad||'').trim()]))
+    )].filter(Boolean).sort();
+    ciudades.forEach(c => {
+      const opt = document.createElement('option');
+      opt.value = c; opt.textContent = c;
+      bdgCiudad.appendChild(opt);
     });
   }
 
@@ -4335,6 +4464,10 @@ function refreshBodega(){
     if(start && t.fecha < start) return false;
     if(end && t.fecha > end) return false;
     if(trans && t.transporte !== trans && t.transName !== trans) return false; 
+    if(ciudad) {
+       const hasCiudad = (t.dests||[]).some(d => (d.ciudad||'').trim()===ciudad) || (t.localidad||'').trim()===ciudad;
+       if(!hasCiudad) return false;
+    }
     
     const truck = S.fleet.find(f => f.patente === (t.unidad || t.patente));
     const tTipo = t.truckTipo || truck?.tipo || '';
@@ -4354,16 +4487,18 @@ function refreshBodega(){
   let totalEquiv = 0, totalMax = 0, count = 0;
   const transStats = {};
   const truckStats = {};
+  const zonaStats = {};
+  const matrixStats = {}; // { zona: { transportista: {motos, viajes:Set, tipos:{}, fechas:[]} } }
   const tbody = document.getElementById('bdg-tbody');
   if(tbody) tbody.innerHTML = '';
 
   let sinCapacidad = 0;
 
   filtered.forEach(t => {
-    // Lógica retroactiva robusta
-    const pie = t.motos_pie !== undefined ? t.motos_pie : (t.dests || []).reduce((s,d)=>s+(d.pie||0), 0);
-    const caj = t.motos_cajon !== undefined ? t.motos_cajon : (t.dests || []).reduce((s,d)=>s+(d.cajon||0), 0);
-    const equiv = t.equiv_motos !== undefined ? t.equiv_motos : (pie + (caj * 3));
+    // Lógica retroactiva robusta — si "Excluir AFORO" está tildado, se descuentan solo
+    // las unidades de la/s parada/s AFORO de este viaje; el resto del viaje se suma igual.
+    const {pie, caj} = getTripPieCajEfectivo(t, exclAforo);
+    const equiv = (!exclAforo && t.equiv_motos !== undefined) ? t.equiv_motos : (pie + (caj * 3));
 
     // Solo se considera "capacidad real" si el viaje tiene la capacidad del camión guardada,
     // o si la unidad todavía existe en la flota. Si no hay ninguna de las dos, el viaje NO
@@ -4396,6 +4531,102 @@ function refreshBodega(){
       if(tName && tName !== '—') truckStats[unidadKey].trans = tName;
     } else {
       sinCapacidad++;
+    }
+
+    // Distribución por ciudad destino / zona / transportista — se contabiliza para TODOS los
+    // viajes filtrados (tengan o no capacidad de camión registrada), porque lo que importa acá
+    // es el volumen realmente entregado por destino, no la ocupación de la unidad de transporte.
+    const norm = s => (s||'').toString().trim().toUpperCase();
+    const tTipoRow = t.truckTipo || fleetTruck?.tipo || 'Sin tipo';
+    const tripKey = t.tracking || t.id || (unidadKey+'|'+(t.fecha||''));
+    const addToMatrix = (zonaName, dEquiv) => {
+      if(!matrixStats[zonaName]) matrixStats[zonaName] = {};
+      if(!matrixStats[zonaName][tName]) matrixStats[zonaName][tName] = { motos:0, viajes:new Set(), tipos:{} };
+      const cell = matrixStats[zonaName][tName];
+      cell.motos += dEquiv;
+      cell.viajes.add(tripKey);
+      cell.tipos[tTipoRow] = (cell.tipos[tTipoRow]||0) + 1;
+    };
+    const addToZona = (zonaName, dEquiv, clienteIds) => {
+      if(!zonaStats[zonaName]) zonaStats[zonaName] = { motos:0, viajes:new Set(), camiones:new Set(), clientes:new Set() };
+      zonaStats[zonaName].motos += dEquiv;
+      zonaStats[zonaName].viajes.add(tripKey);
+      zonaStats[zonaName].camiones.add(unidadKey);
+      (clienteIds||[]).forEach(c => { if(c) zonaStats[zonaName].clientes.add(c); });
+    };
+    // La zona de un destino NO viene cargada directamente en el propio viaje (d.zona no se
+    // guarda al crear el viaje). La fuente real del dato es el Maestro de Clientes geolocalizado,
+    // que sí tiene la zona asignada por cliente. El cruce se complica porque, cuando un viaje
+    // sale del Ruteador, TODA la ruta se consolida en una única línea de destino cuya
+    // descripción es la lista de razones sociales de los clientes de la ruta, separadas por
+    // " · " (ver rutVincularViaje) — no una localidad. Por eso acá:
+    //   1) probamos la descripción completa como localidad (viajes cargados a mano, un destino real)
+    //   2) si no matchea, la partimos por separadores y cruzamos cada fragmento contra la
+    //      razón social de los clientes del Maestro (caso rutas consolidadas)
+    //   3) si un destino termina apuntando a más de una zona (ruta con clientes de zonas
+    //      distintas), el volumen de esa línea se reparte en partes iguales entre esas zonas
+    //   4) por último, nombre de cliente a nivel del viaje completo, y tarifario como respaldo
+    const getZonasForDestino = (d) => {
+      if(d && d.zona) return [d.zona];
+      const rawTxt = (d ? (d.ciudad||d.desc) : t.localidad) || '';
+      const fullNorm = norm(rawTxt);
+      if(fullNorm){
+        const cliByLoc = (S.clientes||[]).find(c=>norm(c.localidad)===fullNorm && c.zona);
+        if(cliByLoc) return [cliByLoc.zona];
+      }
+      const fragments = rawTxt.split(/[·,/]/).map(s=>s.trim()).filter(Boolean);
+      if(fragments.length){
+        const zonasFound = new Set();
+        fragments.forEach(frag=>{
+          const fragNorm = norm(frag);
+          let cli = (S.clientes||[]).find(c=>norm(c.localidad)===fragNorm && c.zona);
+          if(!cli) cli = (S.clientes||[]).find(c=>{
+            const cn = norm(c.razon);
+            return cn && c.zona && (cn===fragNorm || fragNorm.includes(cn) || cn.includes(fragNorm));
+          });
+          if(cli) zonasFound.add(cli.zona);
+        });
+        if(zonasFound.size) return [...zonasFound];
+      }
+      const clienteTxt = norm(t.cliente);
+      if(clienteTxt){
+        const cliByName = (S.clientes||[]).find(c=>{
+          const cn = norm(c.razon);
+          return cn && c.zona && (cn===clienteTxt || clienteTxt.includes(cn) || cn.includes(clienteTxt));
+        });
+        if(cliByName) return [cliByName.zona];
+      }
+      if(d && d.ciudad){ const tar = allTarifs.find(ta=>ta.c===d.ciudad); if(tar?.z) return [tar.z]; }
+      return [];
+    };
+    // Clientes distintos involucrados en este destino/parada — se usa la misma lógica de
+    // fragmentación que getZonasForDestino (rutas consolidadas del Ruteador separan cada
+    // cliente con " · "), así una fila de destino con varios clientes cuenta a cada uno.
+    const getClientesForDestino = (d) => {
+      const rawTxt = (d ? (d.ciudad||d.desc) : t.localidad) || '';
+      const fragments = rawTxt.split(/[·]/).map(s=>s.trim()).filter(Boolean);
+      if(fragments.length > 1) return fragments.map(norm);
+      const single = rawTxt.trim() || (t.cliente||'').trim();
+      return single ? [norm(single)] : [];
+    };
+    const repartirEnZonas = (d, dEquiv) => {
+      const zonas = getZonasForDestino(d);
+      const zonasFinal = zonas.length ? zonas : ['Sin zona'];
+      const share = dEquiv / zonasFinal.length;
+      const clienteIds = getClientesForDestino(d);
+      zonasFinal.forEach(zonaName=>{ addToZona(zonaName, share, clienteIds); addToMatrix(zonaName, share); });
+    };
+    if(t.dests && t.dests.length){
+      t.dests.forEach(d=>{
+        const esAforoDest = norm(d.ciudad)==='AFORO' || norm(d.desc)==='AFORO';
+        if(exclAforo && esAforoDest) return; // se excluye solo esta línea/parada
+        const dEquiv = (d.pie||0) + (d.cajon||0)*3;
+        if(dEquiv<=0) return;
+        repartirEnZonas(d, dEquiv);
+      });
+    } else if(!(exclAforo && norm(t.localidad)==='AFORO') && equiv>0){
+      // Viaje legado sin detalle de paradas: se toma como un único destino = localidad del viaje
+      repartirEnZonas(null, equiv);
     }
 
     const occPct = tieneCapacidad ? Math.round((equiv / max) * 100) : null;
@@ -4487,6 +4718,11 @@ function refreshBodega(){
       });
     }
   }
+
+  // Distribución de motos entregadas por zona (mapa gráfico + listado) — refleja los filtros activos
+  renderBodegaZonaMapaGrafico(zonaStats);
+  renderBodegaZonaDistList(zonaStats);
+  renderBodegaMatrizZonaTransporte(matrixStats);
 }
 
 function exportBodegaExcel(){
@@ -4499,9 +4735,9 @@ function exportBodegaExcel(){
   // ── HOJA 1: Detalle de viajes ──
   const hdr1=['Tracking','Fecha','Transporte','Unidad','Chofer','Pie','Cajón','Equiv.','Capacidad','Ocupación %'];
   const rows1 = filtered.map(t=>{
-    const pie = t.motos_pie !== undefined ? t.motos_pie : (t.dests||[]).reduce((s,d)=>s+(d.pie||0),0);
-    const caj = t.motos_cajon !== undefined ? t.motos_cajon : (t.dests||[]).reduce((s,d)=>s+(d.cajon||0),0);
-    const equiv = t.equiv_motos !== undefined ? t.equiv_motos : (pie + caj*3);
+    const exclAforo = document.getElementById('bdg-excl-aforo')?.checked || false;
+    const {pie, caj} = getTripPieCajEfectivo(t, exclAforo);
+    const equiv = (!exclAforo && t.equiv_motos !== undefined) ? t.equiv_motos : (pie + caj*3);
     const max = t.truck_cap_pie || (S.fleet.find(f=>f.patente===(t.unidad||t.patente))?.pie) || (equiv>0?equiv:1);
     const pct = max>0 ? Math.round((equiv/max)*100) : 0;
     return [t.tracking||'—', t.fecha||'', t.transporte||t.transName||'—', t.unidad||t.patente||'—', t.chofer||'—', pie, caj, equiv, max, pct/100];
@@ -4534,6 +4770,318 @@ function exportBodegaExcel(){
   XLSX.utils.book_append_sheet(wb, ws3, 'Ocup. Camión');
   XLSX.writeFile(wb, `ocupacion_bodega_${todayStr()}.xlsx`);
   logAction('bodega','exportar_excel',`${filtered.length} viajes exportados`);
+}
+
+// ── Mapa gráfico (esquemático) de distribución por zona ──
+// No es un mapa interactivo/geográfico: es un gráfico SVG con una burbuja por zona,
+// ubicada en una posición fija que imita la disposición real de las zonas logísticas
+// en el mapa de Argentina (NOA/NEA al norte, CUYO/CENTRO en el medio, GBA/PBA al este, SUR al sur).
+// El tamaño de la burbuja = motos equiv. entregadas; el texto muestra motos y camiones/viajes.
+// Se recalcula en cada refreshBodega(), así que siempre refleja los filtros activos.
+const ZONA_MAPA_POS = {
+  'NOA':                  {x:0.42, y:0.14},
+  'NEA':                  {x:0.74, y:0.16},
+  'Litoral':              {x:0.72, y:0.27},
+  'Cuyo':                 {x:0.26, y:0.33},
+  'Córdoba':              {x:0.46, y:0.33},
+  'GBA Norte':            {x:0.76, y:0.39},
+  'CABA':                 {x:0.80, y:0.41},
+  'GBA Oeste':            {x:0.73, y:0.43},
+  'GBA Sur':              {x:0.79, y:0.44},
+  'Buenos Aires Interior':{x:0.62, y:0.50},
+  'Patagonia':            {x:0.36, y:0.75},
+};
+
+// Silueta de Argentina calibrada sobre coordenadas geográficas aproximadas (long/lat)
+// convertidas a fracciones 0-1, para que el dibujo sea reconocible como el país real:
+// triángulo mesopotámico al NE, bulto de Buenos Aires, angostamiento patagónico y
+// Tierra del Fuego al sur, cordillera de los Andes como borde oeste.
+const ARGENTINA_SILUETA = [
+  [0.475,0.029],[0.575,0.044],[0.800,0.118],[0.875,0.191],[0.775,0.265],
+  [0.750,0.368],[0.825,0.456],[0.575,0.574],[0.425,0.647],[0.325,0.735],
+  [0.275,0.853],[0.250,0.926],[0.275,0.994],[0.175,0.941],[0.075,0.853],
+  [0.050,0.735],[0.085,0.618],[0.125,0.500],[0.175,0.368],[0.200,0.235],
+  [0.275,0.118],[0.400,0.044]
+];
+
+// Paleta de color por intensidad de ocupación de zona (usada para el relleno de cada burbuja,
+// según su cantidad de camiones relativa al máximo del set filtrado actual)
+function bdgZonaColorFor(pct){
+  if(pct >= 0.75) return 'var(--red)';
+  if(pct >= 0.45) return 'var(--accent)';
+  if(pct >= 0.2)  return 'var(--blue)';
+  return 'var(--green)';
+}
+
+// Actualiza el panel de detalle (embebido como HTML sobre el mapa) con las 4 métricas de la
+// zona bajo el mouse / tocada. clienteIds recibe el tamaño ya calculado (entero).
+window.bdgMapShowDetail = function(zona, camiones, motos, clientes){
+  const panel = document.getElementById('bdg-zona-mapa-panel');
+  if(!panel) return;
+  panel.innerHTML = `
+    <div class="mono text10 cm" style="letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;">Zona</div>
+    <div class="bebas" style="font-size:20px;color:var(--accent);line-height:1.1;margin-bottom:8px;">${zona}</div>
+    <div style="display:flex;flex-direction:column;gap:5px;">
+      <div class="flex fac fjb"><span class="mono text10 cm">🚚 Camiones</span><span class="mono bold" style="font-size:13px;">${camiones}</span></div>
+      <div class="flex fac fjb"><span class="mono text10 cm">🏍 Motos</span><span class="mono bold" style="font-size:13px;">${motos}</span></div>
+      <div class="flex fac fjb"><span class="mono text10 cm">🏢 Clientes</span><span class="mono bold" style="font-size:13px;">${clientes}</span></div>
+    </div>`;
+};
+window.bdgMapClearDetail = function(){
+  const panel = document.getElementById('bdg-zona-mapa-panel');
+  if(!panel) return;
+  panel.innerHTML = '<div class="mono text10 cm" style="text-align:center;padding-top:26px;">👆 Pasá el mouse o tocá<br>una zona del mapa</div>';
+};
+window.bdgMapBubbleFx = function(el, on){
+  if(!el) return;
+  el.setAttribute('stroke-width', on ? '3.6' : '2.2');
+  el.setAttribute('fill-opacity', on ? '0.65' : '0.42');
+};
+
+// ── Zoom del mapa interactivo (botones + / − / reset) ──
+// El zoom se aplica vía CSS transform sobre el wrapper interno, sin volver a
+// dibujar el SVG, así que no se pierden los handlers de hover/click de las burbujas.
+window._bdgMapZoom = window._bdgMapZoom || 1;
+window.bdgMapZoom = function(factor){
+  window._bdgMapZoom = Math.min(3, Math.max(0.6, (window._bdgMapZoom||1) * factor));
+  window.applyBdgMapZoom();
+};
+window.bdgMapZoomReset = function(){
+  window._bdgMapZoom = 1;
+  window.applyBdgMapZoom();
+};
+window.applyBdgMapZoom = function(){
+  const inner = document.getElementById('bdg-zona-mapa-inner');
+  if(inner) inner.style.transform = `scale(${window._bdgMapZoom})`;
+};
+
+function renderBodegaZonaMapaGrafico(zonaStats){
+  const cont = document.getElementById('bdg-zona-mapa-grafico');
+  if(!cont) return;
+
+  const entries = Object.entries(zonaStats); // [zona, {motos, viajes:Set, camiones:Set, clientes:Set}]
+  if(!entries.length){
+    cont.innerHTML = '<div class="mono text10 cm" style="padding:20px;text-align:center;">Sin datos para los filtros seleccionados.</div>';
+    return;
+  }
+
+  const maxCamiones = Math.max(...entries.map(([,s])=>s.camiones.size));
+  const W = 640, H = 480;
+  const maxRadius = 44, minRadius = 18;
+  const px = x => 20 + x*(W-40);
+  const py = y => 10 + y*(H-70);
+
+  // Zonas sin posición fija conocida (ej. "Sin zona") se acomodan en una fila aparte abajo
+  const zonasConPos = entries.filter(([z])=>ZONA_MAPA_POS[z]);
+  const zonasSinPos = entries.filter(([z])=>!ZONA_MAPA_POS[z]);
+
+  let svg = `<svg viewBox="0 0 ${W} ${H}" width="100%" style="max-width:${W}px;font-family:'DM Mono',monospace;">`;
+
+  // Fondo suave del mapa
+  svg += `<rect width="${W}" height="${H}" fill="var(--s2)" opacity="0.8"/>`;
+
+  // Silueta de Argentina como fondo del gráfico con mejor estilo
+  const path = ARGENTINA_SILUETA.map((p,i)=>`${i===0?'M':'L'}${px(p[0]).toFixed(1)},${py(p[1]).toFixed(1)}`).join(' ')+' Z';
+  svg += `<path d="${path}" fill="var(--accent)" fill-opacity="0.08" stroke="var(--accent)" stroke-width="2" stroke-opacity="0.6"/>`;
+
+  // Étiquetas de brújula
+  svg += `<text x="${W-25}" y="24" text-anchor="end" font-size="11" fill="var(--muted)" font-weight="bold">N</text>`;
+  svg += `<text x="${W-25}" y="${H-48}" text-anchor="end" font-size="11" fill="var(--muted)" font-weight="bold">S</text>`;
+
+  // Dibujar burbujas de zona — interactivas: hover/click actualizan el panel de detalle
+  // con camiones, motos (entero) y clientes distintos de esa zona.
+  zonasConPos.forEach(([zona,s])=>{
+    const pos = ZONA_MAPA_POS[zona];
+    const cx = px(pos.x), cy = py(pos.y);
+    const camiones = s.camiones.size;
+    const motosEnt = Math.round(s.motos);
+    const clientesN = s.clientes.size;
+    const r = maxCamiones>0 ? minRadius + Math.sqrt(camiones/maxCamiones)*(maxRadius-minRadius) : minRadius;
+    const color = bdgZonaColorFor(maxCamiones>0 ? camiones/maxCamiones : 0);
+    const zonaEsc = zona.replace(/'/g,"\\'");
+    const handlers = `onmouseenter="bdgMapShowDetail('${zonaEsc}',${camiones},${motosEnt},${clientesN});bdgMapBubbleFx(this,true)" onmouseleave="bdgMapBubbleFx(this,false)" onclick="bdgMapShowDetail('${zonaEsc}',${camiones},${motosEnt},${clientesN})" style="cursor:pointer;"`;
+
+    // Sombra suave
+    svg += `<circle cx="${cx+1}" cy="${cy+1}" r="${r.toFixed(1)}" fill="var(--fg)" fill-opacity="0.1"/>`;
+
+    // Burbuja principal, color según intensidad de camiones
+    svg += `<circle cx="${cx}" cy="${cy}" r="${r.toFixed(1)}" fill="${color}" fill-opacity="0.42" stroke="${color}" stroke-width="2.2" ${handlers}>
+      <title>${zona}\n🚚 Camiones: ${camiones}\n🏍 Motos: ${motosEnt}\n🏢 Clientes: ${clientesN}</title>
+    </circle>`;
+
+    // Zona nombre en negrita y grande
+    svg += `<text x="${cx}" y="${cy-6}" text-anchor="middle" font-size="11" font-weight="900" fill="var(--fg,#000)" pointer-events="none">${zona}</text>`;
+
+    // Camiones y motos visibles directamente en la burbuja
+    svg += `<text x="${cx}" y="${cy+8}" text-anchor="middle" font-size="11" font-weight="bold" fill="var(--fg,#000)" pointer-events="none">🚚${camiones} 🏍${motosEnt}</text>`;
+  });
+
+  // Zonas sin posición geográfica fija (ej. "Sin zona") en una fila debajo del "mapa"
+  if(zonasSinPos.length){
+    const y = H-35;
+    const stepX = (W-60)/Math.max(zonasSinPos.length,1);
+    zonasSinPos.forEach(([zona,s],i)=>{
+      const cx = 30 + stepX*i + stepX/2;
+      const camiones = s.camiones.size;
+      const motosEnt = Math.round(s.motos);
+      const clientesN = s.clientes.size;
+      const r = maxCamiones>0 ? 14 + Math.sqrt(camiones/maxCamiones)*14 : 14;
+      const zonaEsc = zona.replace(/'/g,"\\'");
+      const handlers = `onmouseenter="bdgMapShowDetail('${zonaEsc}',${camiones},${motosEnt},${clientesN});bdgMapBubbleFx(this,true)" onmouseleave="bdgMapBubbleFx(this,false)" onclick="bdgMapShowDetail('${zonaEsc}',${camiones},${motosEnt},${clientesN})" style="cursor:pointer;"`;
+      svg += `<circle cx="${cx}" cy="${y}" r="${r.toFixed(1)}" fill="var(--muted2)" fill-opacity="0.3" stroke="var(--muted2)" stroke-width="1.8" ${handlers}>
+        <title>${zona}\n🚚 Camiones: ${camiones}\n🏍 Motos: ${motosEnt}\n🏢 Clientes: ${clientesN}</title>
+      </circle>`;
+      svg += `<text x="${cx}" y="${y+4}" text-anchor="middle" font-size="9.5" font-weight="700" fill="var(--fg,#fff)" pointer-events="none">${zona}</text>`;
+    });
+  }
+
+  svg += `</svg>`;
+
+  // Panel de detalle interactivo (se actualiza con hover/click sobre cada burbuja) +
+  // leyenda de color de intensidad de camiones
+  const panelHtml = `
+    <div id="bdg-zona-mapa-panel" style="position:absolute;top:12px;left:12px;width:158px;background:var(--s1);border:1px solid var(--border2);border-radius:10px;padding:10px 12px;z-index:5;box-shadow:0 4px 14px rgba(0,0,0,.25);">
+      <div class="mono text10 cm" style="text-align:center;padding-top:26px;">👆 Pasá el mouse o tocá<br>una zona del mapa</div>
+    </div>
+    <div style="position:absolute;bottom:10px;left:12px;display:flex;gap:10px;flex-wrap:wrap;background:var(--s1);border:1px solid var(--border2);border-radius:8px;padding:6px 10px;z-index:5;">
+      <div class="flex fac gap4"><div style="width:9px;height:9px;border-radius:50%;background:var(--green);"></div><span class="mono text10 cm">Baja</span></div>
+      <div class="flex fac gap4"><div style="width:9px;height:9px;border-radius:50%;background:var(--blue);"></div><span class="mono text10 cm">Media</span></div>
+      <div class="flex fac gap4"><div style="width:9px;height:9px;border-radius:50%;background:var(--accent);"></div><span class="mono text10 cm">Alta</span></div>
+      <div class="flex fac gap4"><div style="width:9px;height:9px;border-radius:50%;background:var(--red);"></div><span class="mono text10 cm">Muy alta</span></div>
+    </div>`;
+
+  cont.style.position = 'relative';
+  cont.innerHTML = `<div id="bdg-zona-mapa-inner" style="position:relative;width:100%;height:100%;display:flex;align-items:center;justify-content:center;transform:scale(${window._bdgMapZoom||1});transform-origin:center center;transition:transform .18s ease-out;">${svg}${panelHtml}</div>`;
+
+  // Nota de diagnóstico
+  let notaEl = document.getElementById('bdg-zona-mapa-nota');
+  if(!notaEl){
+    notaEl = document.createElement('div');
+    notaEl.id = 'bdg-zona-mapa-nota';
+    notaEl.className = 'mono text10 cm';
+    notaEl.style.marginTop = '8px';
+    cont.closest('.card')?.appendChild(notaEl);
+  }
+  const totalCamiones = entries.reduce((s,[,v])=>s+v.camiones.size,0);
+  const sinZona = zonaStats['Sin zona'];
+  if(sinZona && totalCamiones>0 && (sinZona.camiones.size/totalCamiones) > 0.15){
+    const pct = Math.round((sinZona.camiones.size/totalCamiones)*100);
+    notaEl.textContent = `⚠️ ${pct}% de los camiones quedó en "Sin zona" (${sinZona.viajes.size} viajes) — revisá que los clientes de esos destinos tengan el campo Zona cargado en el Maestro de Clientes.`;
+  } else {
+    notaEl.textContent = '';
+  }
+}
+
+function renderBodegaZonaDistList(zonaStats){
+  const el = document.getElementById('bdg-zona-dist-list');
+  if(!el) return;
+  const entries = Object.entries(zonaStats).sort((a,b)=>b[1].motos-a[1].motos);
+  const maxVal = entries.length ? entries[0][1].motos : 0;
+  if(!entries.length){ el.innerHTML='<div class="mono text10 cm" style="padding:6px 2px;">Sin datos.</div>'; return; }
+  el.innerHTML = entries.map(([zona,s])=>{
+    const pct = maxVal>0 ? Math.round((s.motos/maxVal)*100) : 0;
+    const motosEnt = Math.round(s.motos);
+    const clientesN = s.clientes ? s.clientes.size : 0;
+    return `<div>
+      <div class="flex fjb fac"><span class="mono text10 cm">${zona}</span><span class="mono bold" style="font-size:11px;">${motosEnt} 🏍</span></div>
+      <div style="height:4px;background:var(--s3);border-radius:2px;overflow:hidden;margin:3px 0;"><div style="height:100%;width:${pct}%;background:var(--green);"></div></div>
+      <div class="mono text10 cm">🚚 ${s.camiones.size} camiones · 🏢 ${clientesN} clientes</div>
+    </div>`;
+  }).join('');
+}
+
+// ── Dispersión gráfica Zona × Transportista ──
+// Burbuja SVG por celda: tamaño = motos equiv. entregadas, tooltip = viajes + tipos de camión.
+// Se reconstruye en cada refreshBodega(), así que siempre refleja período, tipo de camión,
+// transporte, zona/ciudad y exclusión de AFORO activos en los filtros de arriba.
+const ZONA_ORDEN = ['GBA','PBA','SUR','NEA','NOA','CUYO','CENTRO'];
+
+function renderBodegaMatrizZonaTransporte(matrixStats){
+  const wrap = document.getElementById('bdg-matriz-zona-trans');
+  if(!wrap) return;
+
+  const zonas = Object.keys(matrixStats);
+  if(!zonas.length){
+    wrap.innerHTML = '<div class="mono text10 cm" style="padding:20px;text-align:center;">Sin datos para los filtros seleccionados.</div>';
+    return;
+  }
+  zonas.sort((a,b)=>{
+    const ia=ZONA_ORDEN.indexOf(a), ib=ZONA_ORDEN.indexOf(b);
+    if(a==='Sin zona') return 1; if(b==='Sin zona') return -1;
+    if(ia===-1 && ib===-1) return a.localeCompare(b);
+    if(ia===-1) return 1; if(ib===-1) return -1;
+    return ia-ib;
+  });
+
+  // Totales por transportista (para elegir el TOP N y agrupar el resto en "Otros")
+  const transTotals = {};
+  zonas.forEach(z=>Object.entries(matrixStats[z]).forEach(([tr,c])=>{
+    transTotals[tr] = (transTotals[tr]||0) + c.motos;
+  }));
+  const transSorted = Object.entries(transTotals).sort((a,b)=>b[1]-a[1]).map(x=>x[0]);
+  const MAX_COLS = 7;
+  const topTrans = transSorted.slice(0, MAX_COLS);
+  const hasOtros = transSorted.length > MAX_COLS;
+  const cols = hasOtros ? [...topTrans, 'Otros'] : topTrans;
+
+  // Combina las celdas de una zona+columna (agrupando "Otros" si corresponde)
+  function getCell(zona, col){
+    const cellsForZona = matrixStats[zona] || {};
+    if(col !== 'Otros') return cellsForZona[col] || null;
+    const restTrans = transSorted.slice(MAX_COLS);
+    let motos=0, viajes=0, tipos={};
+    restTrans.forEach(tr=>{
+      const c = cellsForZona[tr]; if(!c) return;
+      motos += c.motos; viajes += c.viajes.size;
+      Object.entries(c.tipos).forEach(([tp,n])=>{ tipos[tp]=(tipos[tp]||0)+n; });
+    });
+    return motos>0 ? {motos, viajes:{size:viajes}, tipos} : null;
+  }
+
+  let maxMotos = 0;
+  zonas.forEach(z=>cols.forEach(c=>{ const cell=getCell(z,c); if(cell && cell.motos>maxMotos) maxMotos=cell.motos; }));
+
+  const cellW = 108, cellH = 84, marginLeft = 150, marginTop = 60;
+  const width = marginLeft + cols.length*cellW + 16;
+  const height = marginTop + zonas.length*cellH + 16;
+  const maxRadius = Math.min(cellW, cellH)/2 - 10;
+
+  let svg = `<svg viewBox="0 0 ${width} ${height}" width="100%" style="max-width:${width}px;font-family:'DM Mono',monospace;">`;
+
+  // Encabezados de columna (transportistas)
+  cols.forEach((c,ci)=>{
+    const x = marginLeft + ci*cellW + cellW/2;
+    svg += `<text x="${x}" y="${marginTop-14}" text-anchor="middle" font-size="9.5" fill="var(--muted2)" transform="rotate(-18 ${x} ${marginTop-14})">${(c.length>16?c.slice(0,15)+'…':c)}</text>`;
+  });
+
+  // Líneas de grilla suaves
+  svg += `<line x1="${marginLeft}" y1="${marginTop}" x2="${marginLeft}" y2="${height-16}" stroke="var(--border)" stroke-width="1"/>`;
+  svg += `<line x1="${marginLeft}" y1="${marginTop}" x2="${width-16}" y2="${marginTop}" stroke="var(--border)" stroke-width="1"/>`;
+
+  zonas.forEach((z,zi)=>{
+    const y = marginTop + zi*cellH + cellH/2;
+    svg += `<text x="${marginLeft-12}" y="${y+4}" text-anchor="end" font-size="11" fill="var(--muted2)" font-weight="600">${z}</text>`;
+    svg += `<line x1="${marginLeft}" y1="${marginTop+(zi+1)*cellH}" x2="${width-16}" y2="${marginTop+(zi+1)*cellH}" stroke="var(--border)" stroke-width="0.5" opacity="0.5"/>`;
+
+    cols.forEach((c,ci)=>{
+      const cx = marginLeft + ci*cellW + cellW/2;
+      const cy = y;
+      const cell = getCell(z,c);
+      if(!cell) return;
+      const motosEnt = Math.round(cell.motos);
+      const r = maxMotos>0 ? 8 + Math.sqrt(cell.motos/maxMotos)*maxRadius : 8;
+      const viajesN = cell.viajes.size!==undefined ? cell.viajes.size : 0;
+      svg += `<circle cx="${cx}" cy="${cy}" r="${r.toFixed(1)}" fill="var(--accent)" fill-opacity="0.38" stroke="var(--accent)" stroke-width="2">
+        <title>${z} — ${c}: ${viajesN} camiones, ${motosEnt} unidades</title>
+      </circle>`;
+      // Mostrar viajes/camiones arriba, unidades abajo, en números grandes
+      svg += `<text x="${cx}" y="${cy-2}" text-anchor="middle" font-size="11" font-weight="900" fill="var(--fg,#fff)" pointer-events="none">${viajesN}</text>`;
+      svg += `<text x="${cx}" y="${cy+8}" text-anchor="middle" font-size="9" font-weight="600" fill="var(--fg,#fff)" pointer-events="none">${motosEnt}</text>`;
+    });
+  });
+
+  svg += `</svg>`;
+  wrap.innerHTML = svg;
 }
 
 function setBodegaVisual(mode){
@@ -4604,7 +5152,7 @@ const TRANS_NAME_MAP = {
   'carniato':'CAR','tarifa car':'CAR','precio car':'CAR','neto car':'CAR','car':'CAR',
   'nessa':'NESSA','tarifa nessa':'NESSA','precio nessa':'NESSA','neto nessa':'NESSA','nessa':'NESSA',
   'ciari':'CIARI','tarifa ciari':'CIARI','precio ciari':'CIARI','neto ciari':'CIARI','ciari':'CIARI',
-  'ciari 60%':'C60','ciari60':'C60','tarifa c60':'C60','precio c60':'C60',
+  'ciari 50%':'C60','ciari50':'C60','ciari 60%':'C60','ciari60':'C60','tarifa c60':'C60','precio c60':'C60',
   'gabriela solis':'SOLIS','gabriela solís':'SOLIS','solis':'SOLIS','tarifa solis':'SOLIS','precio solis':'SOLIS','neto solis':'SOLIS',
   'casella':'CAR',
   'di batista':'LIB',
@@ -4705,7 +5253,9 @@ function getFilteredTrips(){
     if(fTrans && t.transporte !== fTrans) return false;
     const fAdic = document.getElementById('f-adicional')?.value;
     if(fAdic){
-      if(fAdic === 'costo_peajes') {
+      if(fAdic === 'aforo') {
+        if(typeof tripEsDestinoAforo !== 'function' || !tripEsDestinoAforo(t)) return false;
+      } else if(fAdic === 'costo_peajes') {
         if(!((t.costo_peajes||0) > 0 || (t.costo_carga||0) > 0)) return false;
       } else if(fAdic === 'otros') {
         if(!((t.costo_extras_adicionales||0) > 0 || (t.costo_extras_globales||0) > (t.costo_peajes||0)+(t.costo_carga||0)+(t.costo_interplanta||0)+(t.costo_diferencia||0))) return false;
@@ -4728,13 +5278,71 @@ function syncDashFilters(){
   if(current==='' || tList.includes(current)) sel.value = current;
 }
 
+// Cuando el filtro de "Gasto Adicional" está activo, las KPI de motos y costo NO deben sumar
+// el viaje completo — solo la línea/parada a la que ese concepto hace referencia. Ej.: si el
+// viaje tiene 3 destinos y solo uno es "AFORO", al filtrar por AFORO se cuentan únicamente las
+// motos de esa parada (no las de todo el viaje) y el costo proporcional a esas unidades.
+function getAdicLineData(t, fAdic){
+  const norm = s => (s||'').toString().trim().toUpperCase();
+  if(!fAdic) return { pie: t.motos_pie||0, cajon: t.motos_cajon||0, costo: t.costo_total||0 };
+
+  if(fAdic === 'aforo'){
+    if(t.dests && t.dests.length){
+      let pie=0, cajon=0;
+      t.dests.forEach(d=>{
+        if(norm(d.ciudad)==='AFORO' || norm(d.desc)==='AFORO'){ pie+=(d.pie||0); cajon+=(d.cajon||0); }
+      });
+      const motosLinea = pie+cajon;
+      const motosTotal = (t.motos_pie||0)+(t.motos_cajon||0);
+      const costo = motosTotal>0 ? (t.costo_total||0)*(motosLinea/motosTotal) : 0;
+      return { pie, cajon, costo };
+    }
+    // Viaje legado sin detalle de paradas: si TODO el viaje es AFORO, se cuenta entero
+    if(norm(t.localidad)==='AFORO') return { pie:t.motos_pie||0, cajon:t.motos_cajon||0, costo:t.costo_total||0 };
+    return { pie:0, cajon:0, costo:0 };
+  }
+
+  if(fAdic === 'costo_adic_parada'){
+    if(t.dests && t.dests.length){
+      let pie=0, cajon=0, costo=0;
+      t.dests.forEach(d=>{
+        const ap = d.adic_parada||0;
+        if(ap>0){ pie+=(d.pie||0); cajon+=(d.cajon||0); costo+=ap; }
+      });
+      if(costo>0) return { pie, cajon, costo };
+    }
+    // Sin desglose por parada disponible: se cuenta solo el monto del adicional, sin motos asociadas
+    return { pie:0, cajon:0, costo:t.costo_adic_parada||0 };
+  }
+
+  // Extras a nivel viaje completo — no tienen desglose por parada en el modelo de datos
+  // (Estadía Completa, Media Estadía, Interplanta, Peajes/Carga, Extra Cliente, Diferencia
+  // Tarifa, Estadía legado, Otros Extras). Se cuenta solo el VALOR de ese concepto puntual,
+  // no el costo total ni las motos del viaje completo.
+  const costoMap = {
+    costo_estadia_completa: t.costo_estadia_completa||0,
+    costo_media_estadia:    t.costo_media_estadia||0,
+    costo_interplanta:      t.costo_interplanta||0,
+    costo_peajes:           (t.costo_peajes||0)+(t.costo_carga||0),
+    costo_extra_cli:        t.costo_extra_cli||0,
+    costo_diferencia:       t.costo_diferencia||0,
+    costo_estadia:          t.costo_estadia||0,
+    otros:                  t.costo_extras_adicionales||t.costo_extras_globales||0,
+  };
+  return { pie:0, cajon:0, costo: (fAdic in costoMap) ? costoMap[fAdic] : (t.costo_extras_adicionales||0) };
+}
+
 function refreshDashboard(){
   syncDashFilters();
   const trips=getFilteredTrips();
-  const totalPie=trips.reduce((s,t)=>s+(t.motos_pie||0),0);
-  const totalCaj=trips.reduce((s,t)=>s+(t.motos_cajon||0),0);
-  const uniqueDests=new Set(trips.flatMap(t=>t.dests?.map(d=>d.ciudad)||[])).size;
-  const totalCosto=trips.reduce((s,t)=>s+(t.costo_total||0),0);
+  const fAdic=document.getElementById('f-adicional')?.value||'';
+  const lineData = fAdic ? trips.map(t=>getAdicLineData(t, fAdic)) : null;
+  const totalPie=lineData ? lineData.reduce((s,l)=>s+l.pie,0) : trips.reduce((s,t)=>s+(t.motos_pie||0),0);
+  const totalCaj=lineData ? lineData.reduce((s,l)=>s+l.cajon,0) : trips.reduce((s,t)=>s+(t.motos_cajon||0),0);
+  const uniqueDests=fAdic==='aforo'
+    ? new Set(trips.flatMap(t=>(t.dests||[]).filter(d=>(d.ciudad||'').trim().toUpperCase()==='AFORO'||(d.desc||'').trim().toUpperCase()==='AFORO').map(d=>d.ciudad||d.desc))).size
+    : new Set(trips.flatMap(t=>t.dests?.map(d=>d.ciudad)||[])).size;
+  const totalCosto=lineData ? lineData.reduce((s,l)=>s+l.costo,0) : trips.reduce((s,t)=>s+(t.costo_total||0),0);
   const totalMotos=totalPie+totalCaj;
 
   document.getElementById('kpi-viajes').textContent=trips.length;
@@ -4756,15 +5364,16 @@ function refreshDashboard(){
     else heroLbl.textContent=`Período: todos los registros · ${trips.length} viaje${trips.length!==1?'s':''}`;
   }
 
-  // Extras accumulated
-  const totalExtras=trips.reduce((s,t)=>s+(t.costo_estadia||0)+(t.costo_extra_cli||0)+(t.costo_extras_globales||0),0);
+  // Extras accumulated — si hay un filtro de Gasto Adicional activo, mostrar el mismo total
+  // ya acotado a la línea (totalCosto); si no, la suma genérica de extras del viaje completo.
+  const totalExtras = fAdic ? totalCosto : trips.reduce((s,t)=>s+(t.costo_estadia||0)+(t.costo_extra_cli||0)+(t.costo_extras_globales||0),0);
   document.getElementById('kpi-extras').textContent=fmt$(totalExtras);
-  document.getElementById('kpi-extras-s').textContent=totalCosto>0?Math.round(totalExtras/totalCosto*100)+'% del costo total':'estadía+peajes+otros';
+  document.getElementById('kpi-extras-s').textContent=fAdic ? 'según línea filtrada' : (totalCosto>0?Math.round(totalExtras/totalCosto*100)+'% del costo total':'estadía+peajes+otros');
 
   // Update range label
   const from=document.getElementById('db-date-from').value;
   const to=document.getElementById('db-date-to').value;
-  document.getElementById('db-range-label').textContent=from||to?`${from?fmtDate(from):'inicio'} → ${to?fmtDate(to):'hoy'}`:'Todos los períodos';
+  document.getElementById('db-range-label').textContent=(from||to?`${from?fmtDate(from):'inicio'} → ${to?fmtDate(to):'hoy'}`:'Todos los períodos')+(fAdic?' · KPIs acotados a la línea del adicional filtrado':'');
 
   // Daily chart (last 14 days)
   renderDailyChart(trips);
@@ -4933,14 +5542,16 @@ function renderTransChart(trips){
   const tBase=trips.reduce((s,t)=>s+(t.costo_base||0),0);
   const tCaj=trips.reduce((s,t)=>s+(t.costo_cajon||0),0);
   const tEstad=trips.reduce((s,t)=>s+(t.costo_estadia||0),0);
+  const tAdicParada=trips.reduce((s,t)=>s+(t.costo_adic_parada||0),0);
   const tExtraCli=trips.reduce((s,t)=>s+(t.costo_extra_cli||0),0);
   const tOtros=trips.reduce((s,t)=>s+(t.costo_extras_globales||0),0);
-  const tTotal=tBase+tCaj+tEstad+tExtraCli+tOtros||1;
+  const tTotal=tBase+tCaj+tEstad+tAdicParada+tExtraCli+tOtros||1;
   const items=[
     {lbl:'Tarifa base',val:tBase,color:'var(--accent)'},
     {lbl:'Cajón (x3)',val:tCaj,color:'var(--blue)'},
     {lbl:'Estadía',val:tEstad,color:'var(--orange)'},
-    {lbl:'Extra cliente',val:tExtraCli,color:'var(--purple)'},
+    {lbl:'Adicional Parada',val:tAdicParada,color:'var(--purple)'},
+    {lbl:'Extra cliente',val:tExtraCli,color:'var(--green)'},
     {lbl:'Peajes/otros',val:tOtros,color:'var(--muted2)'},
   ];
   const cbd=document.getElementById('chart-cost-breakdown');
@@ -5256,7 +5867,10 @@ function openNewTrip(editTripData){
         const esEl = document.getElementById('tds-estadia-'+id);
         if(esEl) esEl.value = d.estadia_dest || 0;
         const apEl = document.getElementById('tds-adic-parada-'+id);
-        if(apEl) apEl.value = d.adic_parada || d.extra_cli_dest || 0;
+        // Viajes nuevos guardan la CANTIDAD de paradas (adic_parada_cant); viajes viejos (pre-v14.1.11)
+        // solo tenían el monto en $ cargado a mano y no tienen cantidad — no se puede reconstruir la
+        // cantidad original a partir del monto histórico, así que ese caso arranca en 0 paradas.
+        if(apEl) apEl.value = d.adic_parada_cant!=null ? d.adic_parada_cant : 0;
         onTripDestChange();
       }, 50);
     });
@@ -5289,6 +5903,8 @@ function filterTrucksForTrip(){
   const tsel=document.getElementById('t-truck');
   tsel.innerHTML='<option value="">— Patente —</option>'+trucks.map(t=>`<option value="${t.patente}">${t.patente} — ${t.chofer||'?'} (Pie:${t.pie} Cajón:${t.cajon})</option>`).join('');
   onTruckSelect();
+  populateTripAdicionalCatalogoSelect(); // refrescar tarifas disponibles para el transportista elegido
+  renderTripAdicionales(); // recalcular montos de adicionales ya agregados según el nuevo transportista
   onTripDestChange(); // recalcular precios por rango de km × transportista
 }
 
@@ -5315,7 +5931,9 @@ function getTripDests(){
     const caj=cajMagny+cajLesa;
     const clientes=parseInt(document.getElementById('tds-clientes-'+id)?.value)||0;
     const estadia=parseFloat(document.getElementById('tds-estadia-'+id)?.value)||0;
-    const adicParada=parseFloat(document.getElementById('tds-adic-parada-'+id)?.value)||0;
+    const adicParadaCant=parseFloat(document.getElementById('tds-adic-parada-'+id)?.value)||0;
+    const selectedTransKey=getTransKeyFromName(document.getElementById('t-trans')?.value||'');
+    const adicParada=adicParadaCant*getAdicParadaRate(selectedTransKey);
     if(km>0){
       dests.push({
         idx:-1, manual:false, km,
@@ -5323,7 +5941,7 @@ function getTripDests(){
         clientes, pie, cajon:caj,
         pie_magny:pieMagny, cajon_magny:cajMagny,
         pie_lesa:pieLesa, cajon_lesa:cajLesa,
-        estadia_dest:estadia, adic_parada:adicParada,
+        estadia_dest:estadia, adic_parada:adicParada, adic_parada_cant:adicParadaCant,
         subtotal:0
       });
     }
@@ -5356,9 +5974,14 @@ function addTripDest(_, forcedId){
       <input type="number" class="fi" id="tds-estadia-${id}" min="0" value="0" placeholder="0" oninput="onTripDestChange()" style="padding-left:18px;">
       <span style="position:absolute;left:6px;top:50%;transform:translateY(-50%);font-size:10px;color:var(--orange);pointer-events:none;">$</span>
     </div>
-    <div style="position:relative;">
-      <input type="number" class="fi" id="tds-adic-parada-${id}" min="0" value="0" placeholder="0" oninput="onTripDestChange()" style="padding-left:18px;">
-      <span style="position:absolute;left:6px;top:50%;transform:translateY(-50%);font-size:10px;color:var(--purple);pointer-events:none;">$</span>
+    <div style="display:flex;flex-direction:column;gap:1px;">
+      <div style="position:relative;">
+        <input type="number" class="fi" id="tds-adic-parada-${id}" min="0" step="1" value="0" placeholder="0"
+          title="Cantidad de paradas adicionales — se multiplica por la tarifa 'Adicional Parada' del transportista (cargada en el catálogo de Adicionales)"
+          oninput="onTripDestChange()" style="text-align:center;padding-right:14px;">
+        <span style="position:absolute;right:5px;top:50%;transform:translateY(-50%);font-size:8px;color:var(--purple);pointer-events:none;">u</span>
+      </div>
+      <div class="mono" id="tds-adic-parada-monto-${id}" style="font-size:9px;color:var(--purple);text-align:center;"></div>
     </div>
     <div style="text-align:right;padding-right:4px;">
       <div class="mono bold ca" id="${subId}" style="font-size:12px;">$0</div>
@@ -5366,6 +5989,17 @@ function addTripDest(_, forcedId){
     </div>
     <button class="btn-icon" onclick="document.getElementById('tdst-${id}').remove();onTripDestChange();" title="Quitar">✕</button>`;
   document.getElementById('t-dests-wrap').appendChild(div);
+}
+
+// Adicional Parada del catálogo (concepto 'parada'): tarifa por unidad cargada, propia de cada transportista.
+// Se usa para calcular automáticamente el monto de "Adic. paradas" en el alta de viajes,
+// a partir de la CANTIDAD de paradas adicionales que carga el usuario por destino.
+function getAdicParadaCatalogItem(){
+  return (S.adicionales||[]).find(a=>a.concepto==='parada' && a.activo!==false);
+}
+function getAdicParadaRate(transKey){
+  const item = getAdicParadaCatalogItem();
+  return item ? getAdicionalRateForTransporte(item, transKey) : 0;
 }
 
 function onTripDestChange(){
@@ -5387,7 +6021,21 @@ function onTripDestChange(){
     const pie=pMag+pLes;
     const caj=cMag+cLes;
     const estadia=parseFloat(document.getElementById('tds-estadia-'+id)?.value)||0;
-    const adicParada=parseFloat(document.getElementById('tds-adic-parada-'+id)?.value)||0;
+    const adicParadaCant=parseFloat(document.getElementById('tds-adic-parada-'+id)?.value)||0;
+    const adicParadaRate=getAdicParadaRate(selectedTransKey);
+    const adicParada=adicParadaCant*adicParadaRate;
+    const adicParadaMontoEl=document.getElementById('tds-adic-parada-monto-'+id);
+    if(adicParadaMontoEl){
+      if(adicParadaCant>0 && adicParadaRate<=0){
+        adicParadaMontoEl.textContent='Sin tarifa cargada';
+        adicParadaMontoEl.style.color='var(--orange)';
+      } else if(adicParadaCant>0){
+        adicParadaMontoEl.textContent=fmt$(adicParada);
+        adicParadaMontoEl.style.color='var(--purple)';
+      } else {
+        adicParadaMontoEl.textContent='';
+      }
+    }
 
     let precio=0, label='';
     if(km>0){
@@ -5412,24 +6060,34 @@ function onTripDestChange(){
     const sub=precio*pie + precio*3*caj + estadia + adicParada;
     subEl.textContent=fmt$(sub);
   });
+  renderTripAdicionales(); // "Adicional Parada" depende de las unidades cargadas, que pudieron cambiar
   autoCalcTripCot();
 }
+function getSelectedTripTransKey(){
+  return getTransKeyFromName(document.getElementById('t-trans')?.value||'');
+}
+function getTotalUnidadesCargadasTrip(){
+  return getTripDests().reduce((s,d)=>s+d.pie+d.cajon,0);
+}
+
 function populateTripAdicionalCatalogoSelect(){
   const sel = document.getElementById('t-adic-catalogo-sel');
   if(!sel) return;
-  const clienteTxt = (document.getElementById('t-cliente')?.value||'').trim().toLowerCase();
-  const clienteMatch = clienteTxt ? (S.clientes||[]).find(c=>c.razon.toLowerCase()===clienteTxt || c.razon.toLowerCase().includes(clienteTxt)) : null;
+  const transKey = getSelectedTripTransKey();
 
   const disponibles = (S.adicionales||[]).filter(a=>{
     if(a.activo===false) return false;
-    if(!a.cliente_id) return true; // generales siempre disponibles
-    return clienteMatch && a.cliente_id===clienteMatch.id;
+    // Si ya sabemos el transportista del viaje, solo mostrar adicionales con tarifa cargada para ese transportista
+    if(transKey && transKey!=='BEST' && a.tarifas && getAdicionalRateForTransporte(a,transKey)<=0) return false;
+    return true;
   });
 
   sel.innerHTML = '<option value="">— Seleccionar adicional —</option>' +
     disponibles.map(a=>{
-      const lbl = a.tipo==='porcentaje' ? `${a.descripcion} (${a.monto}%)` : `${a.descripcion} (${fmt$(a.monto)})`;
-      return `<option value="${a.id}">${lbl}${a.cliente_id?' · '+(clienteMatch?clienteMatch.razon:''):' · General'}</option>`;
+      const calculo = a.calculo || a.tipo || 'fijo';
+      const rate = getAdicionalRateForTransporte(a, transKey);
+      const rateLbl = calculo==='porcentaje' ? `${rate}%` : (calculo==='por_unidad' ? `${fmt$(rate)}/unidad` : fmt$(rate));
+      return `<option value="${a.id}">${a.descripcion} (${rateLbl})</option>`;
     }).join('');
 }
 
@@ -5439,9 +6097,14 @@ function addAdicionalFromCatalogo(){
   if(!id){ showNotif('⚠️','Seleccioná un adicional','Elegí un adicional del catálogo primero.'); return; }
   const a = (S.adicionales||[]).find(x=>x.id===id);
   if(!a) return;
+  if(tripAdicionales.some(t=>t.adicional_id===id)){ showNotif('⚠️','Ya agregado','Este adicional ya está en el viaje.'); return; }
+  const calculo = a.calculo||a.tipo||'fijo';
   tripAdicionales.push({
     id: 'tadic-'+Date.now()+Math.random().toString(36).substr(2,4),
-    descripcion: a.descripcion, tipo: a.tipo, monto: a.monto,
+    descripcion: a.descripcion, calculo,
+    // "Adicional Parada" arranca sugiriendo las motos cargadas del viaje como cantidad,
+    // pero queda editable para reflejar la cantidad real de paradas adicionales.
+    cantidad: calculo==='por_unidad' ? getTotalUnidadesCargadasTrip() : null,
     origen: 'catalogo', adicional_id: a.id, parada: a.parada||''
   });
   sel.value='';
@@ -5467,8 +6130,44 @@ function removeTripAdicional(id){
 function updateTripAdicionalField(id, field, value){
   const a = tripAdicionales.find(x=>x.id===id);
   if(!a) return;
-  a[field] = (field==='monto') ? (parseFloat(value)||0) : value;
+  a[field] = (field==='monto'||field==='cantidad') ? (parseFloat(value)||0) : value;
+  patchTripAdicionalRowAmount(id);
+  updateTripAdicionalTotalLabel();
   autoCalcTripCot();
+}
+
+// Actualiza solo el monto mostrado de UNA fila (sin reconstruir todo el HTML),
+// para no perder el foco del input mientras el usuario escribe la cantidad/monto.
+function patchTripAdicionalRowAmount(id){
+  const el = document.getElementById('tadic-monto-'+id);
+  if(!el) return;
+  const a = tripAdicionales.find(x=>x.id===id);
+  if(!a) return;
+  const baseRef = window._lastTripCot ? (window._lastTripCot.baseAmt + window._lastTripCot.cajonAmt) : 0;
+  const transKey = getSelectedTripTransKey();
+  const unidades = getTotalUnidadesCargadasTrip();
+  const monto = resolveTripAdicionalRowAmount(a, baseRef, transKey, unidades);
+  el.textContent = fmt$(monto);
+}
+
+// Resuelve el monto de UNA fila de adicionales del viaje (catálogo o manual),
+// según el transportista seleccionado y las unidades cargadas del viaje.
+function resolveTripAdicionalRowAmount(row, baseCostRef, transKey, unidades){
+  if(row.origen==='manual'){
+    return row.tipo==='porcentaje' ? (baseCostRef*(parseFloat(row.monto)||0)/100) : (parseFloat(row.monto)||0);
+  }
+  const cat = (S.adicionales||[]).find(a=>a.id===row.adicional_id);
+  const calculo = row.calculo || cat?.calculo || cat?.tipo || 'fijo';
+  // Para "Adicional Parada" (por_unidad) se usa la cantidad cargada en la fila del viaje
+  // (editable por el usuario, "cantidad de paradas adicionales"), no siempre el total de motos.
+  const unidadesEfectivas = (calculo==='por_unidad' && row.cantidad!=null) ? row.cantidad : unidades;
+  if(!cat){
+    // Adicional borrado del catálogo o viaje legado: usar el último monto guardado en la fila, si existe
+    if(row.monto_resuelto!=null) return parseFloat(row.monto_resuelto)||0;
+    if(row.monto!=null) return row.tipo==='porcentaje' ? (baseCostRef*(parseFloat(row.monto)||0)/100) : (parseFloat(row.monto)||0);
+    return 0;
+  }
+  return resolveAdicionalAmount(cat, baseCostRef, transKey, unidadesEfectivas);
 }
 
 function renderTripAdicionales(){
@@ -5479,23 +6178,34 @@ function renderTripAdicionales(){
     updateTripAdicionalTotalLabel();
     return;
   }
+  const baseRef = window._lastTripCot ? (window._lastTripCot.baseAmt + window._lastTripCot.cajonAmt) : 0;
+  const transKey = getSelectedTripTransKey();
+  const unidades = getTotalUnidadesCargadasTrip();
   wrap.innerHTML = tripAdicionales.map(a=>{
     const isManual = a.origen==='manual';
-    return `<div style="display:grid;grid-template-columns:${isManual?'2fr 90px 100px':'2fr 90px 100px'} auto;gap:7px;align-items:center;background:${isManual?'rgba(167,139,250,.06)':'var(--s1)'};border:1px solid ${isManual?'rgba(167,139,250,.25)':'var(--border2)'};border-radius:7px;padding:7px 9px;margin-bottom:6px;">
+    const calculo = isManual ? a.tipo : a.calculo;
+    const isPorUnidad = !isManual && calculo==='por_unidad';
+    const monto = resolveTripAdicionalRowAmount(a, baseRef, transKey, unidades);
+    const badgeTxt = calculo==='porcentaje' ? '%' : calculo==='por_unidad' ? '×u' : '$';
+    return `<div style="display:grid;grid-template-columns:${isManual?'2fr 90px 100px':isPorUnidad?'1.6fr 70px 90px 100px':'2fr 90px 100px'} auto;gap:7px;align-items:center;background:${isManual?'rgba(167,139,250,.06)':'var(--s1)'};border:1px solid ${isManual?'rgba(167,139,250,.25)':'var(--border2)'};border-radius:7px;padding:7px 9px;margin-bottom:6px;">
       ${isManual
         ? `<input type="text" class="fi" value="${a.descripcion}" placeholder="Descripción del adicional" oninput="updateTripAdicionalField('${a.id}','descripcion',this.value)" style="font-size:12px;">`
         : `<div style="font-size:12.5px;">${a.descripcion}${a.parada?` <span class="mono text10 cm">· ${a.parada}</span>`:''} <span class="mono text10 cm">· catálogo</span></div>`
+      }
+      ${isPorUnidad
+        ? `<input type="number" class="fi" min="0" step="1" value="${a.cantidad!=null?a.cantidad:unidades}" title="Cantidad de paradas adicionales" oninput="updateTripAdicionalField('${a.id}','cantidad',this.value)" style="font-size:12px;text-align:center;">`
+        : ''
       }
       ${isManual
         ? `<div class="sw"><select class="fs" onchange="updateTripAdicionalField('${a.id}','tipo',this.value)" style="font-size:11px;">
              <option value="fijo" ${a.tipo==='fijo'?'selected':''}>Fijo ($)</option>
              <option value="porcentaje" ${a.tipo==='porcentaje'?'selected':''}>% </option>
            </select></div>`
-        : `<span class="badge ${a.tipo==='porcentaje'?'bp':'bd'}" style="text-align:center;">${a.tipo==='porcentaje'?'%':'$'}</span>`
+        : `<span class="badge ${calculo==='porcentaje'?'bp':calculo==='por_unidad'?'bi':'bd'}" style="text-align:center;">${badgeTxt}</span>`
       }
       ${isManual
         ? `<input type="number" class="fi" min="0" step="0.01" value="${a.monto}" oninput="updateTripAdicionalField('${a.id}','monto',this.value)" style="font-size:12px;text-align:right;">`
-        : `<div class="mono" style="text-align:right;font-weight:600;">${a.tipo==='porcentaje'?a.monto+'%':fmt$(a.monto)}</div>`
+        : `<div class="mono" id="tadic-monto-${a.id}" style="text-align:right;font-weight:600;">${fmt$(monto)}</div>`
       }
       <button class="btn-icon" onclick="removeTripAdicional('${a.id}')" title="Quitar">✕</button>
     </div>`;
@@ -5503,12 +6213,11 @@ function renderTripAdicionales(){
   updateTripAdicionalTotalLabel();
 }
 
-// Resuelve el total de adicionales en $ dado un costo base de referencia (tarifa+cajón del viaje)
-function calcTripAdicionalesTotal(baseCostRef){
-  return tripAdicionales.reduce((sum,a)=>{
-    const val = a.tipo==='porcentaje' ? (baseCostRef * (parseFloat(a.monto)||0) / 100) : (parseFloat(a.monto)||0);
-    return sum + val;
-  }, 0);
+// Resuelve el total de adicionales en $, según transportista y unidades cargadas actuales del viaje
+function calcTripAdicionalesTotal(baseCostRef, transKey, unidades){
+  transKey = transKey!=null ? transKey : getSelectedTripTransKey();
+  unidades = unidades!=null ? unidades : getTotalUnidadesCargadasTrip();
+  return tripAdicionales.reduce((sum,a)=>sum + resolveTripAdicionalRowAmount(a, baseCostRef, transKey, unidades), 0);
 }
 
 function updateTripAdicionalTotalLabel(){
@@ -5611,9 +6320,9 @@ function autoCalcTripCot(){
   const estadiaAmt=destEstadia;
   const adicParadaAmt=destAdicParada;
   const otrosAmt=interplanta+contenedor+devCnt+extraCliG+estadiaComp+mediaEstadia;
-  const adicionalesAmt=calcTripAdicionalesTotal(baseAmt+cajonAmt);
-  const total=baseAmt+cajonAmt+estadiaAmt+adicParadaAmt+otrosAmt+adicionalesAmt+adicGlobalTotal;
   const totMotos=allDests.reduce((s,d)=>s+d.pie+d.cajon,0);
+  const adicionalesAmt=calcTripAdicionalesTotal(baseAmt+cajonAmt, selectedTransKey, totMotos);
+  const total=baseAmt+cajonAmt+estadiaAmt+adicParadaAmt+otrosAmt+adicionalesAmt+adicGlobalTotal;
 
   // Best total for comparison chip
   const bestBase=(qBest?.base||0);
@@ -5845,7 +6554,10 @@ function saveTrip(asPending){
     costo_media_estadia:mediaEstadia,
     costo_extras_globales:cot.otrosAmt,
     costo_extras_adicionales: costoExtrasAdicionales,
-    adicionales: JSON.parse(JSON.stringify(tripAdicionales)),
+    adicionales: (()=>{ 
+      const baseRef=cot.baseAmt+cot.cajonAmt;
+      return tripAdicionales.map(a=>({...a, monto_resuelto: resolveTripAdicionalRowAmount(a, baseRef, _saveTransKey, totalMotos)}));
+    })(),
     costo_adicionales: cot.adicionalesAmt || 0,
     costo_total:cot.total + costoExtrasAdicionales,
     extras_desglose: extrasResult.items.length ? extrasResult.items : null,
@@ -6065,6 +6777,7 @@ function openDetail(id){
           ${row('Tarifa base',fmt$(t.costo_base||0))}
           ${row('Costo cajón',fmt$(t.costo_cajon||0))}
           ${row('Estadía (dest+global)',fmt$(t.costo_estadia||0))}
+          ${t.costo_adic_parada ? row('Adicional Parada', `<span style="color:var(--purple);">${fmt$(t.costo_adic_parada)}</span>`) : ''}
           ${row('Extra cliente',fmt$(t.costo_extra_cli||0))}
           ${t.costo_interplanta ? row('Interplanta', fmt$(t.costo_interplanta)) : ''}
           ${t.costo_diferencia ? row('Diferencia Tarifa', fmt$(t.costo_diferencia)) : ''}
@@ -6149,7 +6862,9 @@ function getRepTrips(){
     if(empresa&&(t.empresa_unidad||'')!==empresa) return false;
     const fAdic = document.getElementById('rep-adicional-filter')?.value;
     if(fAdic){
-      if(fAdic === 'costo_peajes') {
+      if(fAdic === 'aforo') {
+        if(typeof tripEsDestinoAforo !== 'function' || !tripEsDestinoAforo(t)) return false;
+      } else if(fAdic === 'costo_peajes') {
         if(!((t.costo_peajes||0) > 0 || (t.costo_carga||0) > 0)) return false;
       } else if(fAdic === 'otros') {
         if(!((t.costo_extras_adicionales||0) > 0 || (t.costo_extras_globales||0) > (t.costo_peajes||0)+(t.costo_carga||0)+(t.costo_interplanta||0)+(t.costo_diferencia||0))) return false;
@@ -6200,16 +6915,16 @@ function renderReportes(){
   const tbody=document.getElementById('rep-tbody');
   const tfoot=document.getElementById('rep-tfoot');
   if(!trips.length){
-    tbody.innerHTML='<tr><td colspan="19" style="text-align:center;color:var(--muted);padding:24px;">Sin viajes en el período</td></tr>';
+    tbody.innerHTML='<tr><td colspan="20" style="text-align:center;color:var(--muted);padding:24px;">Sin viajes en el período</td></tr>';
     tfoot.innerHTML=''; return;
   }
-  let totBase=0,totCaj=0,totEstad=0,totExtra=0,totTotal=0,totPie=0,totCajon=0;
+  let totBase=0,totCaj=0,totEstad=0,totAdicParada=0,totExtra=0,totTotal=0,totPie=0,totCajon=0;
   // Contadores por empresa
   let totMagnyPie=0,totMagnyCajon=0,totLesaPie=0,totLesaCajon=0;
   let totCostoMagny=0,totCostoLesa=0;
   tbody.innerHTML=trips.map((t,i)=>{
     totBase+=(t.costo_base||0); totCaj+=(t.costo_cajon||0); totEstad+=(t.costo_estadia||0);
-    totExtra+=(t.costo_extra_cli||0); totTotal+=(t.costo_total||0);
+    totAdicParada+=(t.costo_adic_parada||0); totExtra+=(t.costo_extra_cli||0); totTotal+=(t.costo_total||0);
     totPie+=(t.motos_pie||0); totCajon+=(t.motos_cajon||0);
     // Acumular por empresa
     const mPie = t.dests ? t.dests.reduce((s,d)=>s+(d.pie_magny||0),0) : 0;
@@ -6243,6 +6958,7 @@ function renderReportes(){
       <td class="mono">${fmt$(t.costo_base||0)}</td>
       <td class="mono">${fmt$(t.costo_cajon||0)}</td>
       <td class="mono">${fmt$(t.costo_estadia||0)}</td>
+      <td class="mono" style="color:var(--purple);">${fmt$(t.costo_adic_parada||0)}</td>
       <td class="mono">${fmt$(t.costo_extra_cli||0)}</td>
       <td class="mono bold ca">${fmt$(t.costo_total||0)}</td>
       <td>${ESTADO_BADGE[t.estado]||t.estado}</td>
@@ -6257,6 +6973,7 @@ function renderReportes(){
     <td class="mono bold">${fmt$(totBase)}</td>
     <td class="mono bold">${fmt$(totCaj)}</td>
     <td class="mono bold">${fmt$(totEstad)}</td>
+    <td class="mono bold" style="color:var(--purple);">${fmt$(totAdicParada)}</td>
     <td class="mono bold">${fmt$(totExtra)}</td>
     <td class="mono bold ca" style="font-size:14px;">${fmt$(totTotal)}</td>
     <td></td>
@@ -6268,7 +6985,7 @@ function renderReportes(){
     <td class="mono bold" style="color:var(--accent);">${fmt(totMagnyPie)}</td>
     <td class="mono bold" style="color:var(--accent);">${fmt(totMagnyCajon)}</td>
     <td class="mono bold" style="color:var(--accent);">${fmt(totMagnyPie+totMagnyCajon)}</td>
-    <td colspan="4"></td>
+    <td colspan="5"></td>
     <td class="mono bold" style="color:var(--accent);">${fmt$(totCostoMagny)}</td>
     <td></td>
   </tr>
@@ -6279,7 +6996,7 @@ function renderReportes(){
     <td class="mono bold" style="color:var(--blue);">${fmt(totLesaPie)}</td>
     <td class="mono bold" style="color:var(--blue);">${fmt(totLesaCajon)}</td>
     <td class="mono bold" style="color:var(--blue);">${fmt(totLesaPie+totLesaCajon)}</td>
-    <td colspan="4"></td>
+    <td colspan="5"></td>
     <td class="mono bold" style="color:var(--blue);">${fmt$(totCostoLesa)}</td>
     <td></td>
   </tr>`;
@@ -6339,9 +7056,76 @@ function exportReportCSV(){
   showNotif('⬇','CSV exportado',`${trips.length} viajes · Magny/Lesa desglosado.`);
 }
 
-function exportReportExcel(){
+// Km total recorrido de un viaje: prioriza el km consolidado de la Ruta (Ruteador),
+// y si el viaje no está vinculado a una ruta, cae al total de km de sus destinos
+// (los destinos ya vienen consolidados en una sola línea cuando el viaje nace del Ruteador/Turnero).
+function getTripKm(t){
+  if(t.ruta_km_total && t.ruta_km_total>0) return Math.round(t.ruta_km_total);
+  if(t.dests && t.dests.length){
+    const sum = t.dests.reduce((s,d)=>s+(parseFloat(d.km)||0),0);
+    if(sum>0) return Math.round(sum);
+  }
+  return 0;
+}
+
+// Nombre de hoja Excel válido: máx 31 caracteres, sin caracteres especiales prohibidos
+function safeSheetName(name){
+  return String(name||'SinNombre').replace(/[\\\/\?\*\[\]:]/g,'').substring(0,31) || 'Hoja';
+}
+
+// ¿Esta parada/destino es el placeholder "AFORO" (control de capacidad, no entrega real)?
+function esAforoDest(d){
+  const norm=s=>(s||'').toString().trim().toUpperCase();
+  return norm(d?.ciudad)==='AFORO' || norm(d?.desc)==='AFORO';
+}
+
+// Separa las paradas de un viaje en "reales" (entregas a cliente) y "AFORO" (control de capacidad).
+// Contempla viajes legado sin desglose de paradas donde localidad==='AFORO' es todo el viaje.
+function splitTripDests(t){
+  if(t.dests && t.dests.length){
+    const real=[], aforo=[];
+    t.dests.forEach(d=> (esAforoDest(d)?aforo:real).push(d));
+    return {real, aforo};
+  }
+  const norm=s=>(s||'').toString().trim().toUpperCase();
+  if(norm(t.localidad)==='AFORO'){
+    return {real:[], aforo:[{ciudad:'AFORO', pie:t.motos_pie||0, cajon:t.motos_cajon||0}]};
+  }
+  return {real:[], aforo:[]};
+}
+
+// Suma pie/cajón (y su desglose Magny/Lesa) de un subconjunto de destinos
+function sumDestUnits(destsSubset){
+  let pie=0,caj=0,mPie=0,mCaj=0,lPie=0,lCaj=0;
+  (destsSubset||[]).forEach(d=>{
+    pie+=(d.pie||0); caj+=(d.cajon||0);
+    mPie+=(d.pie_magny||0); mCaj+=(d.cajon_magny||0);
+    lPie+=(d.pie_lesa||0); lCaj+=(d.cajon_lesa||0);
+  });
+  return {pie,caj,mPie,mCaj,lPie,lCaj};
+}
+
+// Nombre(s) de cliente real a mostrar en el reporte. Las rutas consolidadas del Ruteador
+// separan cada cliente con " · " dentro de d.ciudad/d.desc; si no hay desglose de paradas,
+// cae al campo libre "Cliente" cargado en el viaje (comportamiento histórico).
+function resolveClienteLabel(t, destsSubset){
+  if(destsSubset && destsSubset.length){
+    const names=new Set();
+    destsSubset.forEach(d=>{
+      const raw=(d.ciudad||d.desc||'').toString();
+      raw.split(/[·]/).map(s=>s.trim()).filter(Boolean).forEach(n=>names.add(n));
+    });
+    if(names.size) return [...names].join(' · ');
+  }
+  return (t.cliente||'').trim() || '—';
+}
+
+async function exportReportExcel(){
   const trips=getRepTrips();
   if(!trips.length){showNotif('⚠️','Sin datos','No hay viajes en el período seleccionado.');return;}
+  if(typeof ExcelJS === 'undefined'){ showNotif('❌','ExcelJS no disponible','Recargá la página e intentá de nuevo.'); return; }
+
+  try{
 
   // ── Cálculo de unidades Magny / Lesa por viaje ──
   function getMagnyLesa(t){
@@ -6360,127 +7144,476 @@ function exportReportExcel(){
     return {mPie,mCaj,lPie,lCaj};
   }
 
-  // ── HOJA 1: Detalle de viajes ──
-  const titleRow = ['GRUPO LA EMILIA — REPORTE DE LOGÍSTICA Y COSTOS'];
+  // ── Paleta de marca (alineada al TMS: fondo oscuro + dorado + rojo La Emilia) ──
+  const BRAND = {
+    dark:'FF13161F', dark2:'FF1A2132', gold:'FFE8B040', gold2:'FFF0C850',
+    goldSoft:'FFFBF0DC', red:'FFC0392B', white:'FFFFFFFF', text:'FF13161F',
+    muted:'FF7A8FAA', zebra:'FFF7F2E7', line:'FFD9D9D9'
+  };
+  const CUR_FMT='"$"#,##0.00';
+  const KM_FMT='#,##0" km"';
+
+  const from=document.getElementById('rep-from')?.value||'';
+  const to=document.getElementById('rep-to')?.value||'';
+  const periodoLabel=from&&to?`${fmtDate(from)} al ${fmtDate(to)}`:from?`Desde ${fmtDate(from)}`:to?`Hasta ${fmtDate(to)}`:'Todos los períodos';
+  const transFiltro=document.getElementById('rep-trans-filter')?.value||'';
+
+  const wb = new ExcelJS.Workbook();
+  wb.creator='LaEmilia TMS'; wb.created=new Date();
+
+  // Logo de la empresa (configurado en Ajustes) embebido para las hojas formales
+  let logoImgId=null;
+  if(APP_CONFIG.logoDataUrl){
+    const m=APP_CONFIG.logoDataUrl.match(/^data:image\/(png|jpe?g|gif);base64,/i);
+    if(m){
+      let ext=m[1].toLowerCase(); if(ext==='jpg') ext='jpeg';
+      try{ logoImgId=wb.addImage({base64:APP_CONFIG.logoDataUrl, extension:ext}); }catch(e){ console.warn('No se pudo insertar el logo en el Excel:',e); }
+    }
+  }
+
+  // ═════════════════════ HOJA 1: DETALLE DE VIAJES ═════════════════════
   const hdr=[
     'Tracking','Fecha','Empresa','Tipo Viaje','Hoja de Ruta','Cliente','Localidad','Chofer','Transporte','Unidad','Hora',
+    'Km Viaje',
     'Pie Magny','Cajón Magny','Total Magny',
     'Pie Lesa','Cajón Lesa','Total Lesa',
-    'Total Motos','Costo Base','Costo Cajón','Estadía Dest','Extra Cli Dest',
-    'Interplanta','Contenedor','Dev. CNT','Extra Cli Glob.','Estadía Comp.','Media Estadía','Gasto Total','Estado'
+    'Total Motos','Costo Base','Costo Cajón','Estadía Dest','Cant. Adicional Parada','Adicional Parada','Extra Cli Dest',
+    'Interplanta','Contenedor','Dev. CNT','Extra Cli Glob.','Estadía Comp.','Media Estadía','Costo/Km','Gasto Total','Estado'
   ];
+  const N_COLS=hdr.length; // 34
+  const CUR_IDX=[19,20,21,23,24,25,26,27,28,29,30,31,32]; // 0-based: columnas monetarias (excluye "Cant. Adicional Parada", que es un contador)
+  const KM_IDX=11;
+  const CANT_ADIC_IDX=22; // 0-based: "Cant. Adicional Parada" — cantidad de paradas/clientes que generan el cargo, formato entero
 
   let totMPie=0,totMCaj=0,totLPie=0,totLCaj=0,totPie=0,totCaj=0;
-  let totBase=0,totCajonC=0,totEstad=0,totExtraCli=0;
+  let totBase=0,totCajonC=0,totEstad=0,totAdicParada=0,totAdicParadaCant=0,totExtraCli=0;
   let totInterp=0,totCont=0,totDevCnt=0,totExtraCliG=0,totEstadComp=0,totMediaEst=0;
-  let totTotal=0;
+  let totTotal=0,totKm=0;
   let totCostoMagny=0,totCostoLesa=0;
 
-  const rows=trips.map(t=>{
+  const dataRows=[];
+  trips.forEach(t=>{
+    // ── Totales agregados del viaje completo (igual que antes, no cambia el Consolidado) ──
     const {mPie,mCaj,lPie,lCaj}=getMagnyLesa(t);
     const totalUni=(mPie+mCaj+lPie+lCaj)||1;
     const costoT=t.costo_total||0;
     const costoMagny=(mPie+mCaj+lPie+lCaj)>0 ? costoT*(mPie+mCaj)/totalUni : (t.empresa_unidad==='Lesa'?0:costoT);
     const costoLesa =(mPie+mCaj+lPie+lCaj)>0 ? costoT*(lPie+lCaj)/totalUni : (t.empresa_unidad==='Lesa'?costoT:0);
+    const km=getTripKm(t);
+    const costoKm=km>0?costoT/km:0;
     totMPie+=mPie; totMCaj+=mCaj; totLPie+=lPie; totLCaj+=lCaj;
     totPie+=(t.motos_pie||0); totCaj+=(t.motos_cajon||0);
-    totBase+=(t.costo_base||0); totCajonC+=(t.costo_cajon||0); totEstad+=(t.costo_estadia||0); totExtraCli+=(t.costo_extra_cli||0);
+    totBase+=(t.costo_base||0); totCajonC+=(t.costo_cajon||0); totEstad+=(t.costo_estadia||0); totAdicParada+=(t.costo_adic_parada||0); totExtraCli+=(t.costo_extra_cli||0);
+    totAdicParadaCant+=(t.dests||[]).reduce((s,d)=>s+(d.adic_parada_cant||0),0);
     totInterp+=(t.costo_interplanta||0); totCont+=(t.costo_contenedor||0); totDevCnt+=(t.costo_devolucion_cnt||0);
     totExtraCliG+=(t.costo_extra_cliente_global||0); totEstadComp+=(t.costo_estadia_completa||0); totMediaEst+=(t.costo_media_estadia||0);
-    totTotal+=costoT; totCostoMagny+=costoMagny; totCostoLesa+=costoLesa;
-    return [
-      t.tracking,t.fecha,t.empresa_unidad||'',t.tipo_viaje||'',t.hoja_ruta||'',t.cliente||'',
-      t.localidad||t.dests?.map(d=>d.ciudad).join(', ')||'',t.chofer||'',t.transporte||'',t.unidad||'',t.hora||'',
-      mPie,mCaj,mPie+mCaj,
-      lPie,lCaj,lPie+lCaj,
-      (t.motos_pie||0)+(t.motos_cajon||0),
-      t.costo_base||0,t.costo_cajon||0,t.costo_estadia||0,t.costo_extra_cli||0,
-      t.costo_interplanta||0,t.costo_contenedor||0,t.costo_devolucion_cnt||0,
-      t.costo_extra_cliente_global||0,t.costo_estadia_completa||0,t.costo_media_estadia||0,
-      costoT,t.estado||''
-    ];
+    totTotal+=costoT; totCostoMagny+=costoMagny; totCostoLesa+=costoLesa; totKm+=km;
+
+    // ── Filas visibles: la/s parada/s AFORO se muestran aparte, identificando cuántas unidades del viaje son de aforo ──
+    const {real:destsReal, aforo:destsAforo}=splitTripDests(t);
+    const hasAforo=destsAforo.length>0;
+    const unidAforo=hasAforo?sumDestUnits(destsAforo):null;
+    const unidReal=hasAforo?sumDestUnits(destsReal):null;
+    if(hasAforo && (unidReal.pie+unidReal.caj)>0 && (unidReal.mPie+unidReal.mCaj+unidReal.lPie+unidReal.lCaj)===0){
+      if(t.empresa_unidad==='Lesa'){ unidReal.lPie=unidReal.pie; unidReal.lCaj=unidReal.caj; }
+      else { unidReal.mPie=unidReal.pie; unidReal.mCaj=unidReal.caj; }
+    }
+    if(hasAforo && (unidAforo.pie+unidAforo.caj)>0 && (unidAforo.mPie+unidAforo.mCaj+unidAforo.lPie+unidAforo.lCaj)===0){
+      if(t.empresa_unidad==='Lesa'){ unidAforo.lPie=unidAforo.pie; unidAforo.lCaj=unidAforo.caj; }
+      else { unidAforo.mPie=unidAforo.pie; unidAforo.mCaj=unidAforo.caj; }
+    }
+    // Cantidad de paradas/clientes que generan "Adicional Parada" — surge de la cantidad cargada
+    // por destino (d.adic_parada_cant); en viajes con AFORO se separa igual que el resto de unidades.
+    const adicParadaCantReal=destsReal.reduce((s,d)=>s+(d.adic_parada_cant||0),0);
+    const adicParadaCantAforo=destsAforo.reduce((s,d)=>s+(d.adic_parada_cant||0),0);
+    const adicParadaMontoReal=hasAforo ? destsReal.reduce((s,d)=>s+(d.adic_parada||0),0) : (t.costo_adic_parada||0);
+    const adicParadaMontoAforo=hasAforo ? destsAforo.reduce((s,d)=>s+(d.adic_parada||0),0) : 0;
+
+    // Valorización: el km de la línea AFORO es el mismo km total del viaje/destino (no se prorratea,
+    // es la misma ruta recorrida). El monto valorizado surge del tarifario: se toma el valor por
+    // unidad realmente cobrado en el viaje (costo_base/pie y costo_cajon/cajón, que ya salen del
+    // tarifario por rango de km) y se multiplica por la cantidad de unidades de aforo. El resto de
+    // conceptos (estadía, extra cliente, interplanta, etc.) no son por-unidad y quedan en la línea real.
+    const precioPorPie = (t.motos_pie||0)>0 ? (t.costo_base||0)/(t.motos_pie||0) : 0;
+    const precioPorCajon = (t.motos_cajon||0)>0 ? (t.costo_cajon||0)/(t.motos_cajon||0) : 0;
+    const costoBaseAforo = hasAforo ? precioPorPie*unidAforo.pie : 0;
+    const costoCajonAforo = hasAforo ? precioPorCajon*unidAforo.caj : 0;
+    const costoBaseReal = (t.costo_base||0)-costoBaseAforo;
+    const costoCajonReal = (t.costo_cajon||0)-costoCajonAforo;
+    const gastoAforo = costoBaseAforo+costoCajonAforo;
+    const gastoReal = costoT-gastoAforo;
+    const costoKmAforo = km>0 ? gastoAforo/km : 0;
+    const costoKmReal = km>0 ? gastoReal/km : 0;
+
+    // Si TODO el viaje es AFORO (sin paradas reales), no se emite fila "real" vacía
+    const soloAforo = hasAforo && destsReal.length===0;
+
+    if(!soloAforo){
+      const pieR = hasAforo ? unidReal.pie : (t.motos_pie||0);
+      const cajR = hasAforo ? unidReal.caj : (t.motos_cajon||0);
+      const mPieR = hasAforo ? unidReal.mPie : mPie, mCajR = hasAforo ? unidReal.mCaj : mCaj;
+      const lPieR = hasAforo ? unidReal.lPie : lPie, lCajR = hasAforo ? unidReal.lCaj : lCaj;
+      dataRows.push([
+        t.tracking,t.fecha,t.empresa_unidad||'',t.tipo_viaje||'',t.hoja_ruta||'',
+        resolveClienteLabel(t, hasAforo?destsReal:null),
+        t.localidad||t.dests?.filter(d=>!esAforoDest(d)).map(d=>d.ciudad).join(', ')||'',t.chofer||'',t.transporte||'',t.unidad||'',t.hora||'',
+        km,
+        mPieR,mCajR,mPieR+mCajR,
+        lPieR,lCajR,lPieR+lCajR,
+        pieR+cajR,
+        hasAforo?costoBaseReal:(t.costo_base||0),hasAforo?costoCajonReal:(t.costo_cajon||0),t.costo_estadia||0,
+        adicParadaCantReal,adicParadaMontoReal,t.costo_extra_cli||0,
+        t.costo_interplanta||0,t.costo_contenedor||0,t.costo_devolucion_cnt||0,
+        t.costo_extra_cliente_global||0,t.costo_estadia_completa||0,t.costo_media_estadia||0,
+        hasAforo?costoKmReal:costoKm,
+        hasAforo?gastoReal:costoT,t.estado||''
+      ]);
+    }
+    if(hasAforo){
+      dataRows.push([
+        t.tracking+' (AFORO)',t.fecha,t.empresa_unidad||'',t.tipo_viaje||'',t.hoja_ruta||'',
+        'Control de Aforo — sin entrega real','AFORO',t.chofer||'',t.transporte||'',t.unidad||'',t.hora||'',
+        km,
+        unidAforo.mPie,unidAforo.mCaj,unidAforo.mPie+unidAforo.mCaj,
+        unidAforo.lPie,unidAforo.lCaj,unidAforo.lPie+unidAforo.lCaj,
+        unidAforo.pie+unidAforo.caj,
+        costoBaseAforo,costoCajonAforo,0,adicParadaCantAforo,adicParadaMontoAforo,0,
+        0,0,0,0,0,0,
+        costoKmAforo,
+        gastoAforo,t.estado||''
+      ]);
+    }
+  });
+  const totCostoKmProm=totKm>0?totTotal/totKm:0;
+
+  function buildSummaryRow(label, valuesByIdx){
+    const row=new Array(N_COLS).fill('');
+    row[0]=label;
+    Object.keys(valuesByIdx).forEach(idx=>{ row[idx]=valuesByIdx[idx]; });
+    return row;
+  }
+  const totalRow=buildSummaryRow('TOTAL CONSOLIDADO',{
+    11:totKm,12:totMPie,13:totMCaj,14:totMPie+totMCaj,15:totLPie,16:totLCaj,17:totLPie+totLCaj,
+    18:totPie+totCaj,19:totBase,20:totCajonC,21:totEstad,22:totAdicParadaCant,23:totAdicParada,24:totExtraCli,25:totInterp,26:totCont,
+    27:totDevCnt,28:totExtraCliG,29:totEstadComp,30:totMediaEst,31:totCostoKmProm,32:totTotal
+  });
+  const magnyRow=buildSummaryRow('SUBTOTAL MAGNY',{12:totMPie,13:totMCaj,14:totMPie+totMCaj,32:totCostoMagny});
+  const lesaRow=buildSummaryRow('SUBTOTAL LESA',{15:totLPie,16:totLCaj,17:totLPie+totLCaj,32:totCostoLesa});
+
+  const ws1=wb.addWorksheet('Detalle Viajes',{views:[{state:'frozen',ySplit:4}]});
+  ws1.columns=[{width:12},{width:11},{width:9},{width:12},{width:12},{width:18},{width:22},{width:16},{width:18},{width:10},{width:7},
+    {width:10},{width:10},{width:11},{width:11},{width:9},{width:10},{width:10},{width:11},
+    {width:12},{width:12},{width:12},{width:13},{width:11},{width:13},{width:12},{width:11},{width:11},{width:13},{width:13},{width:13},{width:10},{width:13},{width:10}];
+
+  ws1.mergeCells(1,1,1,N_COLS);
+  ws1.getCell(1,1).value='GRUPO LA EMILIA — REPORTE DE LOGÍSTICA Y COSTOS';
+  ws1.getCell(1,1).font={name:'Arial',bold:true,size:13,color:{argb:BRAND.gold}};
+  ws1.getCell(1,1).fill={type:'pattern',pattern:'solid',fgColor:{argb:BRAND.dark}};
+  ws1.getCell(1,1).alignment={vertical:'middle',horizontal:'left',indent:1};
+  ws1.mergeCells(2,1,2,N_COLS);
+  ws1.getCell(2,1).value=`Período: ${periodoLabel}${transFiltro?' · Transporte: '+transFiltro:''} · Generado: ${fmtDate(todayStr())}`;
+  ws1.getCell(2,1).font={name:'DM Mono',size:9,color:{argb:'FFB8C2D4'}};
+  ws1.getCell(2,1).fill={type:'pattern',pattern:'solid',fgColor:{argb:BRAND.dark2}};
+  ws1.getCell(2,1).alignment={vertical:'middle',horizontal:'left',indent:1};
+  ws1.getRow(1).height=22; ws1.getRow(2).height=16;
+
+  const hdrRowIdx=4;
+  hdr.forEach((h,i)=>{
+    const cell=ws1.getCell(hdrRowIdx,i+1);
+    cell.value=h;
+    cell.font={bold:true,size:9,color:{argb:BRAND.white}};
+    cell.fill={type:'pattern',pattern:'solid',fgColor:{argb:BRAND.dark}};
+    cell.alignment={vertical:'middle',horizontal:'center',wrapText:true};
+    cell.border={top:{style:'thin',color:{argb:BRAND.gold}},bottom:{style:'thin',color:{argb:BRAND.gold}}};
+  });
+  ws1.getRow(hdrRowIdx).height=28;
+
+  dataRows.forEach((r,i)=>{
+    const rowIdx=hdrRowIdx+1+i;
+    r.forEach((v,ci)=>{
+      const cell=ws1.getCell(rowIdx,ci+1);
+      cell.value=v;
+      cell.font={size:9,color:{argb:BRAND.text}};
+      cell.border={bottom:{style:'hair',color:{argb:BRAND.line}}};
+      if(ci===KM_IDX && typeof v==='number') cell.numFmt=KM_FMT;
+      if(ci===CANT_ADIC_IDX && typeof v==='number') cell.numFmt='#,##0';
+      if(CUR_IDX.includes(ci) && typeof v==='number') cell.numFmt=CUR_FMT;
+      if(i%2===1) cell.fill={type:'pattern',pattern:'solid',fgColor:{argb:BRAND.zebra}};
+    });
   });
 
-  // Fila totales general
-  rows.push(['TOTAL CONSOLIDADO','','','','','','','','','','',
-    totMPie,totMCaj,totMPie+totMCaj,totLPie,totLCaj,totLPie+totLCaj,
-    totPie+totCaj,
-    totBase,totCajonC,totEstad,totExtraCli,totInterp,totCont,totDevCnt,totExtraCliG,totEstadComp,totMediaEst,
-    totTotal,'']);
-  // Fila MAGNY
-  rows.push(['SUBTOTAL MAGNY','','','','','','','','','','',
-    totMPie,totMCaj,totMPie+totMCaj,'','','','',
-    '','','','','','','','','','',totCostoMagny,'']);
-  // Fila LESA
-  rows.push(['SUBTOTAL LESA','','','','','','','','','','',
-    '','','',totLPie,totLCaj,totLPie+totLCaj,'',
-    '','','','','','','','','','',totCostoLesa,'']);
+  [totalRow,magnyRow,lesaRow].forEach((r,ri)=>{
+    const rowIdx=hdrRowIdx+1+dataRows.length+ri;
+    const fillColor = ri===0 ? BRAND.gold : BRAND.goldSoft;
+    r.forEach((v,ci)=>{
+      const cell=ws1.getCell(rowIdx,ci+1);
+      cell.value=v;
+      cell.font={bold:true,size:9,color:{argb:BRAND.text}};
+      cell.fill={type:'pattern',pattern:'solid',fgColor:{argb:fillColor}};
+      if(ci===KM_IDX && typeof v==='number') cell.numFmt=KM_FMT;
+      if(ci===CANT_ADIC_IDX && typeof v==='number') cell.numFmt='#,##0';
+      if(CUR_IDX.includes(ci) && typeof v==='number') cell.numFmt=CUR_FMT;
+    });
+  });
 
-  const ws1 = XLSX.utils.aoa_to_sheet([titleRow, [], hdr, ...rows]);
-  // Formato moneda en columnas de costo (índices 18-28)
-  const range1 = XLSX.utils.decode_range(ws1['!ref']);
-  for(let C=18;C<=28;++C){
-    for(let R=3;R<=range1.e.r;++R){
-      const ref=XLSX.utils.encode_cell({c:C,r:R});
-      if(ws1[ref]&&ws1[ref].t==='n') ws1[ref].z='"$"#,##0.00';
-    }
-  }
-  // Ancho de columnas
-  ws1['!cols']=[{wch:12},{wch:11},{wch:9},{wch:12},{wch:12},{wch:18},{wch:22},{wch:16},{wch:18},{wch:10},{wch:7},
-    {wch:10},{wch:11},{wch:11},{wch:9},{wch:10},{wch:10},{wch:11},
-    {wch:12},{wch:12},{wch:12},{wch:13},{wch:12},{wch:11},{wch:11},{wch:13},{wch:13},{wch:13},{wch:13},{wch:10}];
-
-  // ── HOJA 2: Consolidado ──
-  const from=document.getElementById('rep-from')?.value||'';
-  const to=document.getElementById('rep-to')?.value||'';
-  const periodoLabel=from&&to?`${from} al ${to}`:from?`Desde ${from}`:to?`Hasta ${to}`:'Todos los períodos';
+  // ═════════════════════ HOJA 2: CONSOLIDADO ═════════════════════
   const totalMotos=totPie+totCaj;
   const cpMoto=totalMotos>0?(totTotal/totalMotos):0;
   const cpMotoMagny=(totMPie+totMCaj)>0?totCostoMagny/(totMPie+totMCaj):0;
   const cpMotoLesa=(totLPie+totLCaj)>0?totCostoLesa/(totLPie+totLCaj):0;
 
-  const ws2 = XLSX.utils.aoa_to_sheet([
-    ['GRUPO LA EMILIA — CONSOLIDADO DE VIAJES VALORIZADOS'],
-    [`Período: ${periodoLabel}`],
-    [],
-    ['RESUMEN GENERAL'],
-    ['Total viajes',trips.length],
-    ['Total motos despachadas',totalMotos],
-    ['Costo total de fletes',totTotal],
-    ['Costo promedio por moto',cpMoto],
-    [],
-    ['DESGLOSE POR EMPRESA'],
-    ['Empresa','Unidades Pie','Unidades Cajón','Total Unidades','Costo Total','Costo / Moto'],
-    ['MAGNY',totMPie,totMCaj,totMPie+totMCaj,totCostoMagny,cpMotoMagny],
-    ['LESA', totLPie,totLCaj,totLPie+totLCaj,totCostoLesa, cpMotoLesa],
-    ['TOTAL', totMPie+totLPie, totMCaj+totLCaj, totalMotos, totTotal, cpMoto],
-    [],
-    ['DESGLOSE DE COSTOS'],
-    ['Concepto','Importe'],
-    ['Tarifa base',totBase],
-    ['Cajón (x3)',totCajonC],
-    ['Estadía destino',totEstad],
-    ['Extra cliente',totExtraCli],
-    ['Interplanta',totInterp],
-    ['Contenedor',totCont],
-    ['Devolución CNT',totDevCnt],
-    ['Extra cliente global',totExtraCliG],
-    ['Estadía completa',totEstadComp],
-    ['Media estadía',totMediaEst],
-    ['TOTAL',totTotal],
-  ]);
-  // Formato moneda en hoja consolidado
-  [[4,1],[6,1],[7,1],[11,4],[11,5],[12,4],[12,5],[13,4],[13,5],[17,1],[18,1],[19,1],[20,1],[21,1],[22,1],[23,1],[24,1],[25,1],[26,1],[27,1]].forEach(([r,c])=>{
-    const ref=XLSX.utils.encode_cell({c,r});
-    if(ws2[ref]&&ws2[ref].t==='n') ws2[ref].z='"$"#,##0.00';
-  });
-  ws2['!cols']=[{wch:28},{wch:16},{wch:16},{wch:16},{wch:16},{wch:16}];
+  const ws2=wb.addWorksheet('Consolidado');
+  ws2.columns=[{width:26},{width:16},{width:16},{width:16},{width:16},{width:16}];
 
-  const wb = XLSX.utils.book_new();
-  XLSX.utils.book_append_sheet(wb, ws1, "Detalle Viajes");
-  XLSX.utils.book_append_sheet(wb, ws2, "Consolidado");
-  XLSX.writeFile(wb, `reporte_la_emilia_${todayStr()}.xlsx`);
-  showNotif('✅','Excel exportado',`${trips.length} viajes · 2 hojas (Detalle + Consolidado).`);
+  let r2=1;
+  ws2.mergeCells(r2,1,r2,6);
+  ws2.getCell(r2,1).value='GRUPO LA EMILIA — CONSOLIDADO DE VIAJES VALORIZADOS';
+  ws2.getCell(r2,1).font={bold:true,size:13,color:{argb:BRAND.gold}};
+  ws2.getCell(r2,1).fill={type:'pattern',pattern:'solid',fgColor:{argb:BRAND.dark}};
+  ws2.getCell(r2,1).alignment={vertical:'middle',indent:1}; ws2.getRow(r2).height=22; r2++;
+  ws2.mergeCells(r2,1,r2,6);
+  ws2.getCell(r2,1).value=`Período: ${periodoLabel}${transFiltro?' · Transporte: '+transFiltro:''}`;
+  ws2.getCell(r2,1).font={name:'DM Mono',size:9,color:{argb:'FFB8C2D4'}};
+  ws2.getCell(r2,1).fill={type:'pattern',pattern:'solid',fgColor:{argb:BRAND.dark2}};
+  ws2.getCell(r2,1).alignment={vertical:'middle',indent:1}; r2+=2;
+
+  function sectionTitle(text){
+    ws2.mergeCells(r2,1,r2,6);
+    ws2.getCell(r2,1).value=text;
+    ws2.getCell(r2,1).font={bold:true,size:10,color:{argb:BRAND.text}};
+    ws2.getCell(r2,1).fill={type:'pattern',pattern:'solid',fgColor:{argb:BRAND.goldSoft}};
+    r2++;
+  }
+  function kv(label,val,fmt){
+    ws2.getCell(r2,1).value=label; ws2.getCell(r2,1).font={size:10,color:{argb:BRAND.text}};
+    const c=ws2.getCell(r2,2); c.value=val; c.font={bold:true,size:10,color:{argb:BRAND.text}};
+    if(fmt) c.numFmt=fmt;
+    r2++;
+  }
+  sectionTitle('RESUMEN GENERAL');
+  kv('Total viajes',trips.length);
+  kv('Total motos despachadas',totalMotos);
+  kv('Km totales recorridos',totKm,KM_FMT);
+  kv('Cantidad de paradas adicionales',totAdicParadaCant);
+  kv('Costo total de fletes',totTotal,CUR_FMT);
+  kv('Costo promedio por moto',cpMoto,CUR_FMT);
+  kv('Costo promedio por km',totCostoKmProm,CUR_FMT);
+  r2++;
+
+  sectionTitle('DESGLOSE POR EMPRESA');
+  const empHdr=['Empresa','Unidades Pie','Unidades Cajón','Total Unidades','Costo Total','Costo / Moto'];
+  empHdr.forEach((h,i)=>{const c=ws2.getCell(r2,i+1);c.value=h;c.font={bold:true,size:9,color:{argb:BRAND.white}};c.fill={type:'pattern',pattern:'solid',fgColor:{argb:BRAND.dark}};});
+  r2++;
+  [['MAGNY',totMPie,totMCaj,totMPie+totMCaj,totCostoMagny,cpMotoMagny],
+   ['LESA',totLPie,totLCaj,totLPie+totLCaj,totCostoLesa,cpMotoLesa],
+   ['TOTAL',totMPie+totLPie,totMCaj+totLCaj,totalMotos,totTotal,cpMoto]].forEach((row,ri)=>{
+    row.forEach((v,ci)=>{
+      const c=ws2.getCell(r2,ci+1); c.value=v;
+      c.font={bold:ri===2,size:9,color:{argb:BRAND.text}};
+      if(ci>=4 && typeof v==='number') c.numFmt=CUR_FMT;
+      if(ri===2) c.fill={type:'pattern',pattern:'solid',fgColor:{argb:BRAND.goldSoft}};
+    });
+    r2++;
+  });
+  r2++;
+
+  sectionTitle('DESGLOSE DE COSTOS');
+  ws2.getCell(r2,1).value='Concepto'; ws2.getCell(r2,2).value='Importe';
+  ws2.getCell(r2,1).font={bold:true,size:9,color:{argb:BRAND.white}}; ws2.getCell(r2,2).font={bold:true,size:9,color:{argb:BRAND.white}};
+  ws2.getCell(r2,1).fill={type:'pattern',pattern:'solid',fgColor:{argb:BRAND.dark}}; ws2.getCell(r2,2).fill={type:'pattern',pattern:'solid',fgColor:{argb:BRAND.dark}};
+  r2++;
+  [['Tarifa base',totBase],['Cajón (x3)',totCajonC],['Estadía destino',totEstad],[`Adicional Parada (${fmt(totAdicParadaCant)} paradas)`,totAdicParada],['Extra cliente',totExtraCli],
+   ['Interplanta',totInterp],['Contenedor',totCont],['Devolución CNT',totDevCnt],['Extra cliente global',totExtraCliG],
+   ['Estadía completa',totEstadComp],['Media estadía',totMediaEst],['TOTAL',totTotal]].forEach(([label,val],ri,arr)=>{
+    ws2.getCell(r2,1).value=label; ws2.getCell(r2,2).value=val; ws2.getCell(r2,2).numFmt=CUR_FMT;
+    const isLast=ri===arr.length-1;
+    ws2.getCell(r2,1).font={bold:isLast,size:9,color:{argb:BRAND.text}};
+    ws2.getCell(r2,2).font={bold:isLast,size:9,color:{argb:BRAND.text}};
+    if(isLast){ ws2.getCell(r2,1).fill={type:'pattern',pattern:'solid',fgColor:{argb:BRAND.gold}}; ws2.getCell(r2,2).fill={type:'pattern',pattern:'solid',fgColor:{argb:BRAND.gold}}; }
+    r2++;
+  });
+
+  // ═══════════ HOJAS 3+: LIQUIDACIÓN FORMAL POR TRANSPORTISTA (para enviar a facturar) ═══════════
+  const gruposPorTransporte={};
+  trips.forEach(t=>{
+    const key=(t.transporte||'Sin transporte asignado').trim()||'Sin transporte asignado';
+    if(!gruposPorTransporte[key]) gruposPorTransporte[key]=[];
+    gruposPorTransporte[key].push(t);
+  });
+  const nombresTransporte=Object.keys(gruposPorTransporte).sort((a,b)=>a.localeCompare(b));
+  const usedSheetNames=new Set(['Detalle Viajes','Consolidado']);
+
+  nombresTransporte.forEach(nombreTransporte=>{
+    const provTrips=gruposPorTransporte[nombreTransporte];
+    let baseName=safeSheetName('Prov '+nombreTransporte);
+    let finalName=baseName, suf=2;
+    while(usedSheetNames.has(finalName)){ finalName=safeSheetName(baseName+' '+suf); suf++; }
+    usedSheetNames.add(finalName);
+
+    const ws=wb.addWorksheet(finalName,{pageSetup:{orientation:'landscape',fitToPage:true,fitToWidth:1,fitToHeight:0,
+      margins:{left:0.4,right:0.4,top:0.5,bottom:0.5,header:0.2,footer:0.2}}});
+    const COLS=11;
+    ws.columns=[{width:11},{width:12},{width:16},{width:24},{width:20},{width:10},{width:9},{width:9},{width:10},{width:14},{width:12}];
+
+    // Franja de marca con logo
+    for(let rr=1;rr<=3;rr++) for(let cc=1;cc<=COLS;cc++) ws.getCell(rr,cc).fill={type:'pattern',pattern:'solid',fgColor:{argb:BRAND.dark}};
+    if(logoImgId!=null){
+      try{ ws.addImage(logoImgId,{tl:{col:0.15,row:0.15},ext:{width:110,height:46}}); }catch(e){}
+    }
+    ws.mergeCells(1,3,1,COLS);
+    ws.getCell(1,3).value=(APP_CONFIG.companyName||'GRUPO LA EMILIA')+' · MOTOMEL';
+    ws.getCell(1,3).font={bold:true,size:15,color:{argb:BRAND.gold}};
+    ws.getCell(1,3).alignment={vertical:'middle'};
+    ws.mergeCells(2,3,2,COLS);
+    ws.getCell(2,3).value='Liquidación de Fletes — Informe para Facturación';
+    ws.getCell(2,3).font={italic:true,size:11,color:{argb:BRAND.white}};
+    ws.getCell(2,3).alignment={vertical:'middle'};
+    ws.mergeCells(3,3,3,COLS);
+    ws.getCell(3,3).value=`Emitido el ${fmtDate(todayStr())} · Sistema LaEmilia TMS`;
+    ws.getCell(3,3).font={name:'DM Mono',size:8,color:{argb:'FFB8C2D4'}};
+    ws.getCell(3,3).alignment={vertical:'middle'};
+    ws.getRow(1).height=26; ws.getRow(2).height=18; ws.getRow(3).height=15;
+
+    // Datos del proveedor
+    let r=5;
+    const prov=(typeof getTransportesData==='function')?getTransportesData().find(x=>(x.nombre||'').trim().toLowerCase()===nombreTransporte.trim().toLowerCase()):null;
+    [['Transportista',nombreTransporte],
+     ['CUIT',prov?.cuit||'—'],
+     ['Contacto',prov?.contacto||'—'],
+     ['Teléfono',prov?.telefono||'—'],
+     ['Período liquidado',periodoLabel],
+     ['Cantidad de viajes',String(provTrips.length)]].forEach(([label,val])=>{
+      ws.getCell(r,1).value=label; ws.getCell(r,1).font={bold:true,size:9,color:{argb:BRAND.text}};
+      ws.mergeCells(r,2,r,5);
+      ws.getCell(r,2).value=val; ws.getCell(r,2).font={size:9,color:{argb:BRAND.text}};
+      r++;
+    });
+    r++;
+
+    let totKmP=0,totPieP=0,totCajP=0,totCostoP=0;
+    const provRows=[];
+    provTrips.slice().sort((a,b)=>(a.fecha||'').localeCompare(b.fecha||'')).forEach(t=>{
+      const km=getTripKm(t);
+      const costo=t.costo_total||0;
+      totKmP+=km; totCostoP+=costo;
+
+      const {real:destsReal, aforo:destsAforo}=splitTripDests(t);
+      const hasAforo=destsAforo.length>0;
+      const unidAforo=hasAforo?sumDestUnits(destsAforo):null;
+      const unidReal=hasAforo?sumDestUnits(destsReal):null;
+      const soloAforo=hasAforo && destsReal.length===0;
+
+      const pieR=hasAforo?unidReal.pie:(t.motos_pie||0);
+      const cajR=hasAforo?unidReal.caj:(t.motos_cajon||0);
+      totPieP+=pieR; totCajP+=cajR;
+
+      // Valorización: la línea de AFORO usa el mismo km total del viaje (misma ruta recorrida, no se
+      // prorratea). El monto surge del tarifario: valor real por unidad cobrado en el viaje
+      // (costo_base/pie y costo_cajon/cajón) multiplicado por la cantidad de unidades de aforo.
+      let kmReal=km, costoReal=costo, kmAforo=0, costoAforo=0;
+      if(hasAforo){
+        const precioPorPie=(t.motos_pie||0)>0 ? (t.costo_base||0)/(t.motos_pie||0) : 0;
+        const precioPorCajon=(t.motos_cajon||0)>0 ? (t.costo_cajon||0)/(t.motos_cajon||0) : 0;
+        costoAforo=precioPorPie*unidAforo.pie + precioPorCajon*unidAforo.caj;
+        costoReal=costo-costoAforo;
+        kmAforo=km; kmReal=km; // misma ruta, mismo km para ambas líneas
+      }
+
+      if(!soloAforo){
+        provRows.push([fmtDate(t.fecha),t.tracking,t.hoja_ruta||'—',
+          resolveClienteLabel(t, hasAforo?destsReal:null),
+          t.localidad||t.dests?.filter(d=>!esAforoDest(d)).map(d=>d.ciudad).join(', ')||'—',
+          kmReal,pieR,cajR,pieR+cajR,costoReal,t.estado||'']);
+      }
+      if(hasAforo){
+        totPieP+=unidAforo.pie; totCajP+=unidAforo.caj;
+        provRows.push(['—','—','—','Control de Aforo — sin entrega real','AFORO',
+          kmAforo,unidAforo.pie,unidAforo.caj,unidAforo.pie+unidAforo.caj,costoAforo,t.estado||'']);
+      }
+    });
+
+    // Tabla de viajes
+    const tblHdrRow=r;
+    const cols=['Fecha','Tracking','Hoja de Ruta','Cliente','Localidad','Km Viaje','Motos Pie','Motos Cajón','Total Motos','Costo Flete','Estado'];
+    cols.forEach((c,i)=>{
+      const cell=ws.getCell(tblHdrRow,i+1);
+      cell.value=c; cell.font={bold:true,size:9,color:{argb:BRAND.white}};
+      cell.fill={type:'pattern',pattern:'solid',fgColor:{argb:BRAND.dark}};
+      cell.alignment={vertical:'middle',horizontal:'center',wrapText:true};
+      cell.border={top:{style:'thin',color:{argb:BRAND.gold}},bottom:{style:'thin',color:{argb:BRAND.gold}}};
+    });
+    ws.getRow(tblHdrRow).height=24;
+
+    provRows.forEach((vals,i)=>{
+      const rowIdx=tblHdrRow+1+i;
+      vals.forEach((v,ci)=>{
+        const cell=ws.getCell(rowIdx,ci+1);
+        cell.value=v; cell.font={size:9,color:{argb:BRAND.text}};
+        cell.border={bottom:{style:'hair',color:{argb:BRAND.line}}};
+        if(ci===5 && typeof v==='number') cell.numFmt=KM_FMT;
+        if(ci===9 && typeof v==='number') cell.numFmt=CUR_FMT;
+        if(i%2===1) cell.fill={type:'pattern',pattern:'solid',fgColor:{argb:BRAND.zebra}};
+      });
+    });
+
+    const totRowIdx=tblHdrRow+provRows.length+1;
+    ws.mergeCells(totRowIdx,1,totRowIdx,5);
+    ws.getCell(totRowIdx,1).value='TOTALES';
+    ws.getCell(totRowIdx,1).alignment={horizontal:'right',vertical:'middle'};
+    [1,6,7,8,9,10,11].forEach(c=>{ const cell=ws.getCell(totRowIdx,c); cell.font={bold:true,size:10,color:{argb:BRAND.white}}; cell.fill={type:'pattern',pattern:'solid',fgColor:{argb:BRAND.red}}; });
+    ws.getCell(totRowIdx,6).value=totKmP; ws.getCell(totRowIdx,6).numFmt=KM_FMT;
+    ws.getCell(totRowIdx,7).value=totPieP;
+    ws.getCell(totRowIdx,8).value=totCajP;
+    ws.getCell(totRowIdx,9).value=totPieP+totCajP;
+    ws.getCell(totRowIdx,10).value=totCostoP; ws.getCell(totRowIdx,10).numFmt=CUR_FMT;
+
+    const bigRow=totRowIdx+2;
+    ws.mergeCells(bigRow,1,bigRow,7);
+    ws.getCell(bigRow,1).value='TOTAL A FACTURAR:';
+    ws.getCell(bigRow,1).font={bold:true,size:13,color:{argb:BRAND.text}};
+    ws.getCell(bigRow,1).alignment={horizontal:'right',vertical:'middle'};
+    ws.mergeCells(bigRow,8,bigRow,COLS);
+    const bigCell=ws.getCell(bigRow,8);
+    bigCell.value=totCostoP; bigCell.numFmt=CUR_FMT;
+    bigCell.font={bold:true,size:14,color:{argb:BRAND.text}};
+    bigCell.fill={type:'pattern',pattern:'solid',fgColor:{argb:BRAND.gold}};
+    bigCell.alignment={horizontal:'center',vertical:'middle'};
+    ws.getRow(bigRow).height=26;
+
+    const sigRow=bigRow+3;
+    ws.mergeCells(sigRow,1,sigRow,5);
+    ws.getCell(sigRow,1).value='Conformado por Transportista: _______________________________';
+    ws.getCell(sigRow,1).font={size:9,color:{argb:BRAND.text}};
+    ws.mergeCells(sigRow,7,sigRow,COLS);
+    ws.getCell(sigRow,7).value='Revisado — Grupo La Emilia: _______________________________';
+    ws.getCell(sigRow,7).font={size:9,color:{argb:BRAND.text}};
+    ws.getCell(sigRow+1,1).value='Fecha de conformidad: ____ / ____ / ______';
+    ws.getCell(sigRow+1,1).font={size:9,color:{argb:BRAND.text}};
+
+    const noteRow=sigRow+3;
+    ws.mergeCells(noteRow,1,noteRow,COLS);
+    ws.getCell(noteRow,1).value='Este informe es generado automáticamente por LaEmilia TMS a partir de los viajes registrados en el sistema y sirve como base para la conciliación de facturación. Ante cualquier discrepancia, comunicarse con el área de Logística y Facturación de Grupo La Emilia.';
+    ws.getCell(noteRow,1).font={size:8,italic:true,color:{argb:BRAND.muted}};
+    ws.getCell(noteRow,1).alignment={wrapText:true};
+    ws.getRow(noteRow).height=28;
+
+    ws.views=[{state:'frozen',ySplit:tblHdrRow}];
+  });
+
+  const buffer=await wb.xlsx.writeBuffer();
+  const blob=new Blob([buffer],{type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  a.href=url; a.download=`reporte_la_emilia_${todayStr()}.xlsx`;
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  setTimeout(()=>URL.revokeObjectURL(url),4000);
+
+  showNotif('✅','Excel exportado',`${trips.length} viajes · Detalle + Consolidado + ${nombresTransporte.length} liquidación(es) por transportista.`);
+
+  }catch(err){
+    console.error('exportReportExcel error:',err);
+    showNotif('❌','Error al exportar','No se pudo generar el Excel. Revisá la consola para más detalle.');
+  }
 }
 
 // ── RECOVERY & BACKUP ──
@@ -6533,19 +7666,30 @@ let cotDstCount=0;
 function addCotDest(){
   cotDstCount++;
   const id=cotDstCount;
-  // Usar tarifas activas (base + custom) — refleja en tiempo real altas de destinos
+  // Usar tarifas activas (base + custom) — el selector de destino es solo un atajo
+  // para autocompletar el KM; el cálculo real siempre usa el campo KM (modelo v13+).
   const activeTariffs = getTarifasMerged().filter(d=>d.activo);
-  const opts=activeTariffs.map((t,i)=>`<option value="${i}">${t.c} (${t.p})</option>`).join('');
+  const opts=activeTariffs.map((t,i)=>`<option value="${i}" data-km="${t.km||0}">${t.c} (${t.p}) · ${t.km||0}km</option>`).join('');
   const div=document.createElement('div');
   div.id='cd-'+id;
-  div.style.cssText='display:grid;grid-template-columns:1fr 70px 70px auto;gap:7px;align-items:end;background:var(--s2);border:1px solid var(--border);border-radius:8px;padding:9px;margin-bottom:7px;';
+  div.style.cssText='display:grid;grid-template-columns:1.4fr 80px 70px 70px auto;gap:7px;align-items:end;background:var(--s2);border:1px solid var(--border);border-radius:8px;padding:9px;margin-bottom:7px;';
   div.innerHTML=`
-    <div class="sw"><select class="fs" id="cds-${id}"><option value="">— Destino —</option>${opts}</select></div>
+    <div class="sw"><select class="fs" id="cds-${id}" onchange="cotDestPickAutofillKm(${id})"><option value="">— Destino del tarifario (opcional) —</option>${opts}</select></div>
+    <div style="position:relative;">
+      <input type="number" class="fi" id="cdk-${id}" min="1" value="" placeholder="km" style="text-align:center;font-family:'DM Mono';font-weight:700;color:var(--green);border-color:rgba(61,214,140,.5);">
+    </div>
     <div><label class="fg" style="margin:0;padding-bottom:3px;">Pie</label><input type="number" class="fi" id="cdp-${id}" min="0" value="0"></div>
     <div><label class="fg" style="margin:0;padding-bottom:3px;">Cajón</label><input type="number" class="fi" id="cdc-${id}" min="0" value="0"></div>
     <button class="btn-icon" onclick="document.getElementById('cd-${id}').remove();updCotCount();">✕</button>`;
   document.getElementById('cot-destinos').appendChild(div);
   updCotCount();
+}
+function cotDestPickAutofillKm(id){
+  const sel=document.getElementById('cds-'+id);
+  const opt=sel?.selectedOptions?.[0];
+  const km=opt?.dataset?.km;
+  const kmEl=document.getElementById('cdk-'+id);
+  if(km && kmEl && !kmEl.value) kmEl.value=km; // solo autocompletar si el usuario no cargó un km manual antes
 }
 function updCotCount(){ document.getElementById('cot-ndests').textContent=document.querySelectorAll('[id^="cd-"]').length+' destinos'; }
 
@@ -6554,9 +7698,12 @@ function getCotDests(){
   document.querySelectorAll('[id^="cd-"]').forEach(el=>{
     const id=el.id.replace('cd-','');
     const sel=document.getElementById('cds-'+id);
+    const km=parseFloat(document.getElementById('cdk-'+id)?.value)||0;
     const pie=parseInt(document.getElementById('cdp-'+id)?.value)||0;
     const caj=parseInt(document.getElementById('cdc-'+id)?.value)||0;
-    if(sel&&sel.value!=='') dests.push({idx:parseInt(sel.value),pie,cajon:caj});
+    const opt=sel?.selectedOptions?.[0];
+    const label = (opt && opt.value!=='') ? opt.textContent : (km?`${km} km`:'Destino');
+    if(km>0) dests.push({km,pie,cajon:caj,label});
   });
   return dests;
 }
@@ -6612,7 +7759,7 @@ function calcCot(){
   document.getElementById('cot-r-dests').innerHTML=q.destDetails.map(dd=>{
     const pt=dd.dpt[q.transKey];
     return `<div class="flex fac fjb" style="padding:7px 0;border-bottom:1px solid var(--border);">
-      <div><b>${dd.tar.c}</b><span class="mono text10 cm"> · ${dd.tar.z} · ${dd.tar.km}km</span></div>
+      <div><b>${dd.d.label||'Destino'}</b><span class="mono text10 cm"> · ${dd.d.km}km</span></div>
       <div style="text-align:right;" class="mono text12">
         ${dd.d.pie} pie + ${dd.d.cajon} cajón<br>
         <span class="ca">${pt?fmt$(pt.total):'—'}</span>
@@ -7169,7 +8316,7 @@ function applyImportedTarifas(rows){
     CAR:      ['CAR','Carniato','carniato','TARIFA CAR','PRECIO CAR','NETO CAR'],
     NESSA:    ['NESSA','Nessa','nessa','TARIFA NESSA','PRECIO NESSA','NETO NESSA'],
     CIARI:    ['CIARI','Ciari','ciari','TARIFA CIARI','PRECIO CIARI','NETO CIARI'],
-    C60:      ['C60','Ciari 60%','Ciari60','c60','ciari60','TARIFA C60','PRECIO C60','NETO C60'],
+    C60:      ['C60','Ciari 50%','Ciari50','ciari 50%','ciari50','Ciari 60%','Ciari60','c60','ciari60','TARIFA C60','PRECIO C60','NETO C60'],
     SOLIS:    ['SOLIS','Solis','Gabriela Solis','gabriela_solis','solis','TARIFA SOLIS','PRECIO SOLIS','NETO SOLIS'],
   };
 
@@ -7849,10 +8996,11 @@ function renderUsuarios(){
   document.getElementById('usr-ops').textContent=totalOps;
 
   const tbody=document.getElementById('usr-tbody');
-  if(!users.length){ tbody.innerHTML='<tr><td colspan="8" style="text-align:center;color:var(--muted);padding:24px;">Sin usuarios</td></tr>'; return; }
+  if(!users.length){ tbody.innerHTML='<tr><td colspan="9" style="text-align:center;color:var(--muted);padding:24px;">Sin usuarios</td></tr>'; return; }
   tbody.innerHTML=users.map(u=>{
     const isActive=u.status==='activo';
     const isSelf=u.id===CU.id;
+    const permCount = u.role==='admin' ? MODULOS.length : Object.values(effectivePermisos(u)).filter(Boolean).length;
     return `<tr>
       <td>
         <div class="flex fac gap8">
@@ -7864,6 +9012,7 @@ function renderUsuarios(){
       </td>
       <td class="mono text10">${u.email}</td>
       <td><span class="badge" style="background:${ROLE_COLORS[u.role]||'#e8b040'}22;color:${ROLE_COLORS[u.role]||'#e8b040'};border:1px solid ${ROLE_COLORS[u.role]||'#e8b040'}44;">${ROLE_LABELS[u.role]||u.role}</span></td>
+      <td class="mono text10">${permCount}/${MODULOS.length} módulos</td>
       <td><div class="flex fac gap5"><div style="width:6px;height:6px;border-radius:50%;background:${isActive?'var(--green)':'var(--muted)'};"></div><span class="mono text10">${isActive?'ACTIVO':'INACTIVO'}</span></div></td>
       <td class="mono text10">${u.lastAccess?fmtDT(u.lastAccess):'Nunca'}</td>
       <td class="mono text10">${u.ops||0}</td>
@@ -7879,17 +9028,55 @@ function renderUsuarios(){
   }).join('');
 }
 
+// ── Grilla de permisos por módulo en el modal de usuario ──
+// Solo el admin puede tildar/destildar; para cualquier otro rol viendo esto
+// (no debería llegar acá porque 'usuarios' no está en su whitelist) se muestra
+// deshabilitado como defensa extra.
+function renderPermGrid(permObj){
+  const isAdmin = CU && CU.role==='admin';
+  const bySec = {};
+  MODULOS.forEach(m=>{ (bySec[m.sec]=bySec[m.sec]||[]).push(m); });
+  let html='';
+  Object.keys(bySec).forEach(sec=>{
+    html += `<div style="font-family:'DM Mono';font-size:9px;letter-spacing:.5px;color:var(--muted);text-transform:uppercase;margin:8px 0 4px;">${sec}</div>`;
+    html += `<div style="display:grid;grid-template-columns:1fr 1fr;gap:4px 10px;">`;
+    bySec[sec].forEach(m=>{
+      const checked = permObj[m.k] ? 'checked' : '';
+      const dis = isAdmin ? '' : 'disabled';
+      html += `<label style="display:flex;align-items:center;gap:6px;font-size:12px;cursor:${isAdmin?'pointer':'not-allowed'};opacity:${isAdmin?'1':'.6'};">
+        <input type="checkbox" id="nu-perm-${m.k}" ${checked} ${dis} style="accent-color:var(--accent);width:14px;height:14px;">${m.n}
+      </label>`;
+    });
+    html += `</div>`;
+  });
+  document.getElementById('nu-perm-grid').innerHTML = html;
+}
+
+function applyRoleDefaultsToPermCheckboxes(){
+  const role = document.getElementById('nu-role').value;
+  renderPermGrid(getDefaultPermisos(role));
+}
+
+function readPermCheckboxes(){
+  const perm={};
+  MODULOS.forEach(m=>{ const el=document.getElementById('nu-perm-'+m.k); perm[m.k] = el ? el.checked : false; });
+  return perm;
+}
+
 function openNewUserModal(){
+  if(!CU || CU.role!=='admin'){ showNotif('⚠️','No tienes permiso','Solo un administrador puede gestionar usuarios y accesos.'); return; }
   document.getElementById('new-user-modal-title').textContent='NUEVO USUARIO';
   ['nu-name','nu-email','nu-pass'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
   document.getElementById('nu-err').style.display='none';
   document.getElementById('nu-role').value='dispatcher';
   document.getElementById('nu-status').value='activo';
   document.getElementById('modal-new-user')._editId=null;
+  renderPermGrid(getDefaultPermisos('dispatcher'));
   openModal('modal-new-user');
 }
 
 function openEditUserModal(id){
+  if(!CU || CU.role!=='admin'){ showNotif('⚠️','No tienes permiso','Solo un administrador puede gestionar usuarios y accesos.'); return; }
   const u=USERS_DB.find(x=>x.id===id);
   if(!u) return;
   document.getElementById('new-user-modal-title').textContent='EDITAR USUARIO';
@@ -7900,16 +9087,19 @@ function openEditUserModal(id){
   document.getElementById('nu-status').value=u.status||'activo';
   document.getElementById('nu-err').style.display='none';
   document.getElementById('modal-new-user')._editId=id;
+  renderPermGrid(effectivePermisos(u));
   openModal('modal-new-user');
 }
 
 async function saveNewUser(){
+  if(!CU || CU.role!=='admin'){ showNotif('⚠️','No tienes permiso','Solo un administrador puede gestionar usuarios y accesos.'); return; }
   const editId=document.getElementById('modal-new-user')._editId;
   const name=(document.getElementById('nu-name').value||'').trim();
   const email=(document.getElementById('nu-email').value||'').trim().toLowerCase();
   const pass=document.getElementById('nu-pass').value||'';
   const role=document.getElementById('nu-role').value;
   const status=document.getElementById('nu-status').value;
+  const permisos=readPermCheckboxes();
   const sendEmail=document.getElementById('nu-send-email')?.checked ?? true;
   const errEl=document.getElementById('nu-err');
   errEl.style.display='none';
@@ -7932,13 +9122,15 @@ async function saveNewUser(){
         if(passErr){ errEl.style.display='';errEl.textContent=passErr; return; }
         u.passHash=hashPass(pass);
       }
-      u.name=name; u.email=email; u.role=role; u.status=status;
+      u.name=name; u.email=email; u.role=role; u.status=status; u.permisos=permisos;
       u.initials=name.split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2);
       u.color=ROLE_COLORS[role]||'#e8b040';
       await saveUsersDB();
       closeModal('modal-new-user');
       renderUsuarios();
       showNotif('✅','Usuario actualizado',name);
+      // Si el usuario editado es el que está logueado ahora mismo, refrescar su sidebar en vivo
+      if(CU.id===u.id){ CU.role=u.role; CU.permisos=u.permisos; updateSidebar(CU.role); }
     } else {
       // ── CREATE new user ──
       if(!pass){ errEl.style.display='';errEl.textContent='La contraseña es obligatoria.'; return; }
@@ -7947,7 +9139,7 @@ async function saveNewUser(){
       const initials=name.split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2);
       const newUser={
         id:'usr_'+Date.now(),name,email,
-        passHash:hashPass(pass),role,status,
+        passHash:hashPass(pass),role,status,permisos,
         ops:0,lastAccess:null,
         createdAt:new Date().toISOString(),
         initials,color:ROLE_COLORS[role]||'#e8b040',
@@ -9070,10 +10262,11 @@ function refreshCotizadorSelects(){
       sel.innerHTML = '<option value="">— Destino del tarifario —</option>' + opts;
       sel.value = prev;
     });
-    // Actualizar cotizador principal
+    // Actualizar cotizador principal (con km para autocompletar)
+    const optsKm = allActive.map((t,i)=>`<option value="${i}" data-km="${t.km||0}">${t.c} (${t.p}) · ${t.km||0}km</option>`).join('');
     document.querySelectorAll('[id^="cds-"]').forEach(sel=>{
       const prev = sel.value;
-      sel.innerHTML = '<option value="">— Destino —</option>' + opts;
+      sel.innerHTML = '<option value="">— Destino del tarifario (opcional) —</option>' + optsKm;
       sel.value = prev;
     });
   };
@@ -11246,44 +12439,87 @@ function applyImportedTarifasKm(rows){
 // ══════════════════════════════════════════════════════
 let adicEditId = null;
 
-function populateAdicionalClienteFilter(){
-  const sel = document.getElementById('adic-f-cliente');
-  if(!sel) return;
-  const cur = sel.value;
-  const clientes = S.clientes||[];
-  sel.innerHTML = '<option value="">— Todos —</option>' +
-    clientes.map(c=>`<option value="${c.id}">${c.razon}</option>`).join('');
-  if(clientes.find(c=>c.id===cur)) sel.value = cur;
+function populateAdicionalTransFilter(){
+  const selT = document.getElementById('adic-f-trans');
+  if(selT){
+    const curT = selT.value;
+    selT.innerHTML = '<option value="">— Todos —</option>' +
+      TRANS_KEYS.map(t=>`<option value="${t.k}">${t.n}</option>`).join('');
+    if(TRANS_KEYS.find(t=>t.k===curT)) selT.value = curT;
+  }
+}
+
+// ═══════════════════════════════════════════════
+//  CATÁLOGO DE ADICIONALES — POR TRANSPORTE (v14)
+//  Cada adicional del catálogo tiene una tarifa propia por transportista
+//  (S.adicionales[i].tarifas = {NG:1500, LIB:1200, ...}), porque el mismo
+//  concepto (parada, estadía completa, media estadía) vale distinto según
+//  el transportista contratado. Los adicionales viejos (formato v13, con
+//  `tipo`/`monto` planos y sin `tarifas`) se siguen leyendo con fallback
+//  universal para no perder datos históricos.
+// ═══════════════════════════════════════════════
+const ADIC_CONCEPTOS = {
+  parada:           {label:'Adicional Parada',    calculo:'por_unidad', unidad:'$ por unidad cargada'},
+  estadia_completa: {label:'Estadía Completa',    calculo:'fijo',       unidad:'$ fijo por viaje'},
+  media_estadia:    {label:'Media Estadía',       calculo:'fijo',       unidad:'$ fijo por viaje'},
+  personalizado:    {label:'Personalizado',       calculo:null,         unidad:null},
+};
+
+// Tarifa cargada para un transportista puntual (0 si no está cargada para ese transportista)
+function getAdicionalRateForTransporte(adicional, transKey){
+  if(adicional.tarifas && typeof adicional.tarifas==='object'){
+    const v = adicional.tarifas[transKey];
+    return (v!=null && v!=='') ? (parseFloat(v)||0) : 0;
+  }
+  // Fallback legado: adicionales viejos sin tarifas por transporte, monto universal
+  return parseFloat(adicional.monto)||0;
+}
+
+// Calcula el monto resuelto de un adicional para un transporte y una cantidad de unidades cargadas dados
+// baseCost = costo base+cajón de referencia (para tipo porcentaje)
+// unidades = motos totales cargadas en el viaje (pie+cajón), para tipo por_unidad ("Adicional Parada")
+function resolveAdicionalAmount(adicional, baseCost=0, transKey='BEST', unidades=0){
+  if(!adicional) return 0;
+  const calculo = adicional.calculo || adicional.tipo || 'fijo';
+  const rate = getAdicionalRateForTransporte(adicional, transKey);
+  if(calculo==='porcentaje') return baseCost * rate / 100;
+  if(calculo==='por_unidad') return rate * (parseFloat(unidades)||0);
+  return rate; // fijo
 }
 
 function renderAdicionales(){
   if(!S.adicionales) S.adicionales=[];
   const q    = (document.getElementById('adic-search')?.value||'').toLowerCase();
-  const fTipo= document.getElementById('adic-f-tipo')?.value||'';
-  const fCli = document.getElementById('adic-f-cliente')?.value||'';
+  const fConcepto = document.getElementById('adic-f-tipo')?.value||'';
+  const fTrans = document.getElementById('adic-f-trans')?.value||'';
 
   const lista = S.adicionales.filter(a=>{
     if(q && !(a.descripcion||'').toLowerCase().includes(q)) return false;
-    if(fTipo && a.tipo!==fTipo) return false;
-    if(fCli && a.cliente_id!==fCli) return false;
+    if(fConcepto && (a.concepto||'personalizado')!==fConcepto) return false;
+    if(fTrans && getAdicionalRateForTransporte(a,fTrans)<=0) return false;
     return true;
   });
 
   const tbody = document.getElementById('adic-tbody');
   if(!tbody) return;
   if(!lista.length){
-    tbody.innerHTML = `<tr><td colspan="7" class="mono text10 cm" style="text-align:center;padding:24px;">${S.adicionales.length?'Sin resultados.':'Sin adicionales registrados. Creá el primero.'}</td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="6" class="mono text10 cm" style="text-align:center;padding:24px;">${S.adicionales.length?'Sin resultados.':'Sin adicionales registrados. Creá el primero.'}</td></tr>`;
     return;
   }
 
   tbody.innerHTML = lista.map(a=>{
-    const cliente = (S.clientes||[]).find(c=>c.id===a.cliente_id);
-    const valorLbl = a.tipo==='porcentaje' ? `${a.monto}%` : fmt$(a.monto);
+    const concepto = ADIC_CONCEPTOS[a.concepto]||ADIC_CONCEPTOS.personalizado;
+    const calculo = a.calculo || a.tipo || 'fijo';
+    const calculoLbl = calculo==='por_unidad' ? 'Por unidad cargada' : calculo==='porcentaje' ? 'Porcentaje (%)' : 'Fijo ($)';
+    // Resumen de transportistas con tarifa cargada
+    const transConTarifa = TRANS_KEYS.filter(t=>getAdicionalRateForTransporte(a,t.k)>0);
+    const transResumen = a.tarifas
+      ? (transConTarifa.length ? `${transConTarifa.length}/${TRANS_KEYS.length} transportistas` : '<span class="cm">Sin tarifas cargadas</span>')
+      : `<span class="cm">${calculo==='porcentaje'?a.monto+'% (universal)':fmt$(a.monto)+' (universal)'}</span>`;
     return `<tr>
-      <td><b>${a.descripcion}</b></td>
-      <td><span class="badge ${a.tipo==='porcentaje'?'bp':'bd'}">${a.tipo==='porcentaje'?'Porcentaje (%)':'Valor Fijo ($)'}</span></td>
-      <td class="mono">${valorLbl}</td>
-      <td>${cliente?cliente.razon:'<span class="cm">— General —</span>'}</td>
+      <td><b>${a.descripcion}</b><div class="mono text10 cm">${concepto.label}</div></td>
+      <td><span class="badge ${calculo==='por_unidad'?'bp':calculo==='porcentaje'?'bi':'bd'}">${calculoLbl}</span></td>
+      <td class="mono text10">${transResumen}</td>
       <td class="mono text10">${a.parada||'—'}</td>
       <td><span class="badge ${a.activo!==false?'bd':'bx'}">${a.activo!==false?'activo':'inactivo'}</span></td>
       <td style="white-space:nowrap;">
@@ -11294,65 +12530,94 @@ function renderAdicionales(){
   }).join('');
 }
 
+function renderAdicTarifasGrid(tarifas){
+  tarifas = tarifas || {};
+  const wrap = document.getElementById('adic-m-tarifas-grid');
+  if(!wrap) return;
+  wrap.innerHTML = TRANS_KEYS.map(t=>{
+    const v = tarifas[t.k];
+    return `<div class="fg" style="margin:0;">
+      <label style="font-size:10px;">${t.n}</label>
+      <input type="number" class="fi" id="adic-m-tar-${t.k}" min="0" step="0.01" value="${v!=null?v:''}" placeholder="Sin cargar">
+    </div>`;
+  }).join('');
+}
+
+function readAdicTarifasGrid(){
+  const tarifas={};
+  TRANS_KEYS.forEach(t=>{
+    const el=document.getElementById('adic-m-tar-'+t.k);
+    const v = el ? el.value.trim() : '';
+    if(v!=='') tarifas[t.k]=parseFloat(v)||0;
+  });
+  return tarifas;
+}
+
+function onAdicConceptoChange(){
+  const concepto = document.getElementById('adic-m-concepto').value;
+  const cfg = ADIC_CONCEPTOS[concepto];
+  const descEl = document.getElementById('adic-m-desc');
+  const calcWrap = document.getElementById('adic-m-calculo-wrap');
+  const calcHint = document.getElementById('adic-m-calculo-hint');
+  if(concepto!=='personalizado'){
+    descEl.value = cfg.label;
+    descEl.disabled = true;
+    calcWrap.style.display='none';
+    calcHint.style.display='';
+    calcHint.textContent = `Cálculo: ${cfg.unidad}${cfg.calculo==='por_unidad'?' (se multiplica automáticamente por las motos cargadas en el viaje, según la tarifa del transportista seleccionado)':''}`;
+  } else {
+    descEl.disabled = false;
+    if(descEl.value===ADIC_CONCEPTOS.parada.label||descEl.value===ADIC_CONCEPTOS.estadia_completa.label||descEl.value===ADIC_CONCEPTOS.media_estadia.label) descEl.value='';
+    calcWrap.style.display='';
+    calcHint.style.display='none';
+  }
+}
+
 function openAdicionalModal(id){
   adicEditId = id || null;
   const a = id ? (S.adicionales||[]).find(x=>x.id===id) : null;
 
   document.getElementById('adic-modal-title').textContent = a ? 'EDITAR ADICIONAL' : 'NUEVO ADICIONAL';
-  document.getElementById('adic-m-desc').value   = a?.descripcion || '';
-  document.getElementById('adic-m-tipo').value   = a?.tipo || 'fijo';
-  document.getElementById('adic-m-monto').value  = a?.monto || '';
+  document.getElementById('adic-m-concepto').value = a?.concepto || 'parada';
+  document.getElementById('adic-m-desc').value   = a?.descripcion || ADIC_CONCEPTOS[a?.concepto||'parada'].label;
+  document.getElementById('adic-m-calculo').value = a?.calculo || 'fijo';
   document.getElementById('adic-m-parada').value = a?.parada || '';
   document.getElementById('adic-m-activo').checked = a ? (a.activo!==false) : true;
+  onAdicConceptoChange();
 
-  populateAdicionalModalClienteSelect();
-  document.getElementById('adic-m-cliente').value = a?.cliente_id || '';
-  updateAdicMontoLabel();
+  renderAdicTarifasGrid(a?.tarifas);
 
-  document.getElementById('modal-adicional').classList.add('active');
-}
-
-function populateAdicionalModalClienteSelect(){
-  const sel = document.getElementById('adic-m-cliente');
-  if(!sel) return;
-  const clientes = S.clientes||[];
-  sel.innerHTML = '<option value="">— General (sin cliente) —</option>' +
-    clientes.map(c=>`<option value="${c.id}">${c.razon}</option>`).join('');
-}
-
-function updateAdicMontoLabel(){
-  const tipo = document.getElementById('adic-m-tipo')?.value;
-  const lbl = document.getElementById('adic-m-monto-lbl');
-  if(lbl) lbl.textContent = tipo==='porcentaje' ? 'Porcentaje (%) sobre costo base' : 'Monto fijo ($)';
+  document.getElementById('modal-adicional').classList.add('open');
 }
 
 function closeAdicionalModal(){
-  document.getElementById('modal-adicional').classList.remove('active');
+  document.getElementById('modal-adicional').classList.remove('open');
   adicEditId = null;
 }
 
 function saveAdicional(){
-  const descripcion = document.getElementById('adic-m-desc').value.trim();
-  const tipo        = document.getElementById('adic-m-tipo').value;
-  const monto       = parseFloat(document.getElementById('adic-m-monto').value)||0;
+  const concepto    = document.getElementById('adic-m-concepto').value;
+  const cfg         = ADIC_CONCEPTOS[concepto];
+  const descripcion = document.getElementById('adic-m-desc').value.trim() || cfg.label;
+  const calculo     = concepto==='personalizado' ? document.getElementById('adic-m-calculo').value : cfg.calculo;
   const parada      = document.getElementById('adic-m-parada').value.trim();
-  const cliente_id  = document.getElementById('adic-m-cliente').value || null;
   const activo      = document.getElementById('adic-m-activo').checked;
+  const tarifas     = readAdicTarifasGrid();
 
   if(!descripcion){ showNotif('⚠️','Falta descripción','Ingresá una descripción para el adicional.'); return; }
-  if(monto<=0){ showNotif('⚠️','Monto inválido','El monto/porcentaje debe ser mayor a 0.'); return; }
+  if(!Object.keys(tarifas).length){ showNotif('⚠️','Faltan tarifas','Cargá al menos la tarifa de un transportista para este adicional.'); return; }
 
   if(!S.adicionales) S.adicionales=[];
 
   if(adicEditId){
     const idx = S.adicionales.findIndex(a=>a.id===adicEditId);
     if(idx>=0){
-      S.adicionales[idx] = {...S.adicionales[idx], descripcion, tipo, monto, parada, cliente_id, activo};
+      S.adicionales[idx] = {...S.adicionales[idx], concepto, descripcion, calculo, tarifas, parada, activo};
     }
   } else {
     S.adicionales.push({
       id: 'adic-'+Date.now(),
-      descripcion, tipo, monto, parada, cliente_id, activo,
+      concepto, descripcion, calculo, tarifas, parada, activo,
       creadoPor: CU?.name||'', ts: new Date().toISOString()
     });
   }
@@ -11371,16 +12636,14 @@ function deleteAdicional(id){
   showNotif('🗑️','Adicional eliminado','');
 }
 
-// Devuelve los adicionales activos del catálogo asociados a un cliente + los generales
-function getAdicionalesForCliente(cliente_id){
-  return (S.adicionales||[]).filter(a => a.activo!==false && (a.cliente_id===cliente_id || !a.cliente_id));
-}
-
-// Calcula el monto resuelto de un adicional dado un costo base de referencia
-function resolveAdicionalAmount(adicional, baseCost){
-  if(!adicional) return 0;
-  if(adicional.tipo==='porcentaje') return baseCost * (parseFloat(adicional.monto)||0) / 100;
-  return parseFloat(adicional.monto)||0;
+// Devuelve los adicionales activos del catálogo, con tarifa cargada para el transportista dado.
+// El catálogo ya no distingue por cliente: es un tarifario general por transportista.
+function getAdicionalesForCliente(cliente_id, transKey){
+  return (S.adicionales||[]).filter(a => {
+    if(a.activo===false) return false;
+    if(transKey && transKey!=='BEST' && getAdicionalRateForTransporte(a,transKey)<=0 && a.tarifas) return false;
+    return true;
+  });
 }
 
 // ══════════════════════════════════════════════════════
